@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  
+<head>
+  <title>Tsu-Jui Fu</title>
+
+  <link rel="icon" href="assests/icon.png" />
+
+  <link rel="stylesheet" type="text/css" href="assests/style.css">
+  <link rel="stylesheet" type="text/css" href="assests/academicons.min.css">
+  <script src="assests/fontawesome.js"></script>
+
+  <script>
+    function pressBtn(p) {
+
+      var id_btn=["exp-btn", "pub-btn"], class_btn=["fas fa-plus-square", "fas fa-minus-square"];
+      var id_div=["exp-div", "pub-div"], style_div=["height: 300px; overflow: auto;", "height: 400px; overflow: auto;"];
+
+      var btn = document.getElementById(id_btn[p]);
+      if(btn.className == class_btn[0]) {
+        btn.className = class_btn[1];
+        document.getElementById(id_div[p]).style = "";
+      }
+      else {
+        btn.className = class_btn[0];
+        document.getElementById(id_div[p]).style = style_div[p];
+      }
+    }
+
+    function img_hover(e, f) {
+      e.setAttribute("src", f);
+    }
+    function img_unhover(e, f) {
+      e.setAttribute("src", f);
+    }
+  </script>
+</head>
+
+<body>
+  <table style="max-width: 900px;"><tbody>
+    <tr style="padding: 0px;">
+      <td style="padding: 0px;">
+
+        <!-- bio-->
+        <table><tbody>
+          <tr style="padding: 0px;">
+            <td style="padding: 2%; width: 70%; vertical-align: middle;">
+
+              <p style="text-align: center;">
+                <name>Tsu-Jui Fu</name>
+              </p>
+
+              <p>
+                I am currently a 1<sup>st</sup>-year Ph.D. student in Computer Science at <a href="https://www.ucsb.edu/" target="_blank">UCSB</a>, advised by Prof. <a href="http://sites.cs.ucsb.edu/~william/" target="_blank">William Wang</a>. My research topic is about <b>Natural Language Processing (NLP)</b> and <b>Computer Vision (CV)</b>.
+              </p>
+
+              <p>
+                Previously, I finsh my B.S. in National Tsing-Hua University (<b>NTHU</b>) and be lucky to work with Prof. <a href="http://www.cs.nthu.edu.tw/~shwu/" target="_blank">Shan-Hung Wu</a>, Dr. <a href="http://www.iis.sinica.edu.tw/pages/ma" target="_blank">Wei-Yun Ma</a>, Prof. <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>, and Prof. <a href="http://www.cs.nthu.edu.tw/~htchen/" target="_blank">Hwann-Tzong Chen</a>.
+              </p>
+              
+              <p style="text-align: center;">
+                <a href="mailto:tsujuifu@gmail.com" target="_blank"><i class="fas fa-envelope ai-2x"></i></a>&nbsp;
+                <a href="https://github.com/tsujuifu" target="_blank"><i class="fab fa-github ai-2x"></i></a>&nbsp;
+                <a href="files/tsujuifu-cv.pdf" target="_blank"><i class="ai ai-cv-square ai-2x"></i></a>&nbsp;
+                <a href="https://scholar.google.com.tw/citations?user=7QRDcC0AAAAJ" target="_blank"><i class="ai ai-google-scholar-square ai-2x"></i></a>&nbsp;
+                <a href="https://www.facebook.com/yesray0216" target="_blank"><i class="fab fa-facebook-square ai-2x"></i></a>&nbsp;
+                <a href="https://www.instagram.com/yesray0216/" target="_blank"><i class="fab fa-instagram ai-2x"></i></a>&nbsp;
+                <a href="https://www.youtube.com/channel/UCBq_m-DWN4UMvqiDKRa5uvA" target="_blank"><i class="fab fa-youtube ai-2x"></i></a>&nbsp;
+                <a href="https://twitter.com/tsujuifu" target="_blank"><i class="fab fa-twitter-square ai-2x"></i></a>
+              </p>
+            </td>
+
+            <td style="padding: 2%; width: 25%; max-width: 25%;">
+              <img src="assests/profile2.jpg" style="border-radius: 50%;" onmouseover="img_hover(this, 'assests/profile1.jpg');" onmouseout="img_unhover(this, 'assests/profile2.jpg');" />
+            </td>
+          </tr>
+        </tbody></table>
+
+        <!-- experience-->
+        <table><tbody>
+          <tr>
+            <td class="all">
+              <heading>
+                <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Experience<i class="fas fa-plus-square" style="float: right;" onclick="pressBtn(0)" id="exp-btn"></i>
+              </heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <br>
+        <div style="height: 300px; overflow: auto;" id="exp-div">
+          <table><tbody>
+            <tr>
+              <td class="exp-avatar">
+                <img src="imgs/avatar_ucsb.png" />
+              </td>
+              
+              <td class="exp-description">
+                <b>Research Assistant</b>
+                <span style="float: right;">2019 - present</span> 
+                <br>
+                <a href="http://nlp.cs.ucsb.edu/" target="_blank">UCSB NLP</a>
+                <br>
+                Advisor: Prof. <a href="http://sites.cs.ucsb.edu/~william/" target="_blank">William Wang</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_pfn.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Intern</b>
+                  <span style="float: right;">Summer 2019</span> 
+                  <br>
+                  <a href="https://www.preferred-networks.jp/en/" target="_blank">Preferred Networks</a>
+                  <br>
+                  Advisor: Dr. <a href="http://2boy.org/~yuta/" target="_blank">Yuta Tsuboi</a> and Dr. <a href="http://narad.github.io/" target="_blank">Jason Naradowsky</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_iis.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Assistant</b>
+                  <span style="float: right;">2017 - 2019</span> 
+                  <br>
+                  <a href="http://ckip.iis.sinica.edu.tw:8080/" target="_blank">Academia Sinica CKIP Lab</a>
+                  <br>
+                  Advisor: Dr. <a href="http://www.iis.sinica.edu.tw/pages/ma" target="_blank">Wei-Yun Ma</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_elsa.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Assistant</b>
+                  <span style="float: right;">2017 - 2018</span> 
+                  <br>
+                  <a href="https://www.facebook.com/ElsaResearchLab/" target="_blank">NTHU ELSA Lab</a>
+                  <br>
+                  Advisor: Prof. <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_umbo-cv.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Collaboration</b>
+                  <span style="float: right;">2017 - 2018</span> 
+                  <br>
+                  <a href="https://umbocv.ai/" target="_blank">Umbo Computer Vision</a>
+                  <br>
+                  Advisor: Prof. <a href="http://www.cs.nthu.edu.tw/~htchen/" target="_blank">Hwann-Tzong Chen</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_iis.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Intern</b>
+                  <span style="float: right;">Summer 2017</span> 
+                  <br>
+                  <a href="http://ckip.iis.sinica.edu.tw:8080/" target="_blank">Academia Sinica CKIP Lab</a>
+                  <br>
+                  Advisor: Dr. <a href="http://www.iis.sinica.edu.tw/pages/ma" target="_blank">Wei-Yun Ma</a>
+                </td>
+              </tr>
+          </tbody></table>
+        </div>
+        <br><br>
+
+        <!-- publications-->
+        <table><tbody>
+          <tr>
+            <td class="all">
+              <heading>
+                <i class="far fa-file-alt"></i>&nbsp;&nbsp;Publications<i class="fas fa-plus-square" style="float: right;" onclick="pressBtn(1)" id="pub-btn"></i>
+              </heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <br>
+        <div style="height: 400px; overflow: auto;" id="pub-div">
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_cross-ner.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Why Attention? Analyzing and Remedying BiLSTM Deficiency in Modeling Cross-Context for NER</papertitle>
+                <br>
+                <I>Peng-Hsuan Li, <b>Tsu-Jui Fu</b>, and Wei-Yun Ma</I>
+                <br>
+                AAAI 2020, NeurIPS 2019 (CNTXTCOMP workshop)
+                <br>
+                <a href="pubs/aaai20_cross-ner.pdf" target="_blank">Paper</a> | <a href="projs/nips19_cross-ner.html" target="_blank">Project | <a href="https://github.com/jacobvsdanniel/cross-ner" target="_blank">Code</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_distributed-dvsnet.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>A Distributed Scheme for Accelerating Semantic Video Segmentation on An Embedded Cluster</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b><sup>*</sup>, Hsuan-Kung Yang<sup>*</sup>, Kuan-Wei Ho, Po-Han Chiang and Chun-Yi Lee</I>
+                <br>
+                ICCD 2019 (oral)
+                <br>
+                <a href="pubs/iccd19_distributed-dvsnet.pdf" target="_blank">Paper</a> | <a href="projs/iccd19_distributed-dvsnet.html" target="_blank">Project</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_self-adv.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Adversarial Active Exploration for Inverse Dynamics Model Learning</papertitle>
+                <br>
+                <I>Zhang-Wei Hong, <b>Tsu-Jui Fu</b>, Tzu-Yun Shann, Yi-Hsiang Chang, and Chun-Yi Lee</I>
+                <br>
+                CoRL 2019 (oral)
+                <br>
+                <a href="pubs/corl19_self-adv.pdf" target="_blank">Paper</a> | <a href="projs/corl19_self-adv.html" target="_blank">Project</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_graph-rel.png" />
+              </td>
+
+              <td class="pub-description">
+                <papertitle>GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b>, Peng-Hsuan Li, and Wei-Yun Ma</I>
+                <br>
+                ACL 2019 (long)
+                <br>
+                <a href="pubs/acl19_graph-rel.pdf" target="_blank">Paper</a> | <a href="projs/acl19_graph-rel.html" target="_blank">Project</a> | <a href="https://github.com/tsujuifu/pytorch_graph-rel" target="_blank">Code</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_vsum-ptr-gan.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Attentive and Adversarial Learning for Video Summarization</papertitle>
+                  <br>
+                  <I><b>Tsu-Jui Fu</b>, Shao-Heng Tai, and Hwann-Tzong Chen</I>
+                  <br>
+                  WACV 2019 (oral)
+                  <br>
+                  <a href="pubs/wacv19_vsum-ptr-gan.pdf" target="_blank">Paper</a> | <a href="projs/wacv19_vsum-ptr-gan.html" target="_blank">Project</a> | <a href="https://github.com/tsujuifu/pytorch_vsum-ptr-gan" target="_blank">Code</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_preserving-gan.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Region-Semantics Preserving Image Synthesis</papertitle>
+                  <br>
+                  <I>Kang-Jun Liu, <b>Tsu-Jui Fu</b>, and Shan-Hung Wu</I>
+                  <br>
+                  ACCV 2018
+                  <br>
+                  <a href="pubs/accv18_preserving-gan.pdf" target="_blank">Paper</a> | <a href="projs/accv18_preserving-gan.html" target="_blank">Project</a> | <a href="https://github.com/tsujuifu/tensorflow_preserving-gan" target="_blank">Code</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_div-exploration.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</papertitle>
+                  <br>
+                  <I>Zhang-Wei Hong, Tzu-Yun Shann, Shih-Yang Su, Yi-Hsiang Chang, <b>Tsu-Jui Fu</b>, and Chun-Yi Lee</I>
+                  <br>
+                  NIPS 2018
+                  <br>
+                  <a href="pubs/nips18_div-driven.pdf" target="_blank">Paper</a> | <a href="projs/nips18_div-driven.html" target="_blank">Project</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_lstm-shuttle.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Speed Reading: Learning to Read ForBackward via Shuttle</papertitle>
+                  <br>
+                  <I><b>Tsu-Jui Fu</b> and Wei-Yun Ma</I>
+                  <br>
+                  EMNLP 2018 (long)
+                  <br>
+                  <a href="pubs/emnlp18_lstm-shuttle.pdf" target="_blank">Paper</a> | <a href="projs/emnlp18_lstm-shuttle.html" target="_blank">Project</a> | <a href="https://github.com/tsujuifu/pytorch_lstm-shuttle" target="_blank">Code</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_dvsnet.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Dynamic Video Segmentation Network</papertitle>
+                  <br>
+                  <I>Yu-Syuan Xu, <b>Tsu-Jui Fu</b>, Hsuan-Kung Yang, and Chun-Yi Lee</I>
+                  <br>
+                  CVPR 2018
+                  <br>
+                  <a href="pubs/cvpr18_dvsnet.pdf" target="_blank">Paper</a> | <a href="projs/cvpr18_dvsnet.html" target="_blank">Project</a> | <a href="https://github.com/XUSean0118/DVSNet" target="_blank">Code</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br><hr>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_ifo-vl.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Learning from Observation-Only Demonstration for Task-Oriented Language Grounding via Self-Examination</papertitle>
+                  <br>
+                  <I><b>Tsu-Jui Fu</b>, Yuta Tsuboi, Sosuke Kobayashi, and Yuta Kikuchi</I>
+                  <br>
+                  NeurIPS 2019 (ViGIL workshop)
+                  <br>
+                  <a href="pubs/nips19_ifo-vl.pdf" target="_blank">Paper</a> | <a href="projs/nips19_ifo-vl.html" target="_blank">Project</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_h-fnd.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>H-FND: Hierarchical False-Negative Denoising for Robust Distantly-Supervised Relation Extraction</papertitle>
+                  <br>
+                  <I><b>Tsu-Jui Fu</b> and Wei-Yun Ma</I>
+                  <br>
+                  EMNLP 2019 (DeepLo workshop)
+                  <br>
+                  <a href="pubs/emnlp19_h-fnd.pdf" target="_blank">Paper</a> | <a href="projs/emnlp19_h-fnd.html" target="_blank">Project</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_pic.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Visual Relationship Prediction via Label Clustering and Incorporation of Depth Information</papertitle>
+                  <br>
+                  <I>Hsuan-Kung Yang, An-Chieh Cheng<sup>*</sup>, Kuan-Wei Ho<sup>*</sup>, <b>Tsu-Jui Fu</b>, and Chun-Yi Lee</I>
+                  <br>
+                  ECCV 2018 (PIC workshop)
+                  <br>
+                  <a href="pubs/eccv18_pic.pdf" target="_blank">Paper</a> | <a href="projs/eccv18_pic.html" target="_blank">Project</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br><hr>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_ssi.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Self-Supervised Policy Initialization for Playing Games with Language Hints</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b> and William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_aps.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Counterfactual Vision-and-Language Navigation via Adversarial Path Sampler</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b>, Xin Wang, Matthew Peterson, Scott Grafton, Miguel Eckstein, and William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="pub-avatar">
+                  <img src="imgs/avatar_graph-dialogue.png" />
+                </td>
+                
+                <td class="pub-description">
+                  <papertitle>Dialogue-based Diverse Travel Itinerary Recommendation System via Path Sampling</papertitle>
+                  <br>
+                  <I><b>Tsu-Jui Fu</b>, Yu-Han Chen, Huan-Cheng Chang, and Wei-Yun Ma</I>
+                </td>
+              </tr>
+          </tbody></table>
+        </div>
+        <br><br>
+
+        <!-- teaching-->
+        <table><tbody>
+            <tr>
+              <td class="all">
+                <heading><i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;Teaching</heading>
+              </td>
+            </tr>
+            <tr>
+              <td class="all">
+                <br>
+                <b>Teacher Assistant</b>, <a href="https://jazzgirl526.wixsite.com/vlss2018" target="_blank">Vision Learning Summer School</a>, NTHU
+                <span style="float: right">Summer 2018</span>
+                <br>
+                <b>Teacher Assistant</b>, <a href="https://www.nvidia.com/zh-tw/deep-learning-ai/education/" target="_blank">Deep Learning Institute</a>, <a href="https://www.nvidia.com/zh-tw/" target="_blank">NVIDIA Taiwan</a>
+                <span style="float: right">Spring 2018</span>
+                <br>
+                <b>Teacher Assistant</b>, <a href="https://nthu-datalab.github.io/ml/index.html" target="_blank">CS565600 Deep Learning</a>, NTHU
+                <span style="float: right">Fall 2017</span>
+                <br>
+                <b>Teacher Assistant</b>, CS210401 Hardware Design and Lab, NTHU
+                <span style="float: right">Fall 2017</span>
+              </td>
+            </tr>
+        </tbody></table>
+
+        <!-- boreder-->
+        <table><tbody>
+          <tr>
+            <td style="padding: 0px">
+              <br>
+              <p style="text-align: center;">
+                template from <a href="https://jonbarron.info" target="_blank">jonbarron</a>
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

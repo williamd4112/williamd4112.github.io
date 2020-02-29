@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+<head>
+  <title>[EMNLP'18] Speed Reading: Learning to Read ForBackward via Shuttle</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Speed Reading: Learning to Read ForBackward via Shuttle</span></center><br/>
+  <table align=center width=500px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://www.iis.sinica.edu.tw/pages/ma/" target="_blank">Wei-Yun Ma</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">Academia Sinica, Taipei</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Conference on Empirical Methods in Natural Language Processing (<b>EMNLP</b>) 2018 (<b>long</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/emnlp18_lstm-shuttle.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://github.com/tsujuifu/pytorch_lstm-shuttle" target="_blank">[Code]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/poster.jpg" width=800px /></center>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	We present <b>LSTM-Shuttle</b>, which applies human speed reading techniques to natural language processing tasks for accurate and efficient comprehension. In contrast to previous work, LSTM-Shuttle <b>not only reads shuttling forward but also goes back</b>. Shuttling forward enables high efficiency, and <b>going backward gives the model a chance to recover lost information</b>, ensuring better prediction. We evaluate LSTM-Shuttle on sentiment analysis, news article classification, and cloze on IMDB, Rotten Tomatoes, AG, and Children"s Book Test datasets. We show that LSTM-Shuttle <b>predicts both better and more quickly</b>. To demonstrate how LSTM-Shuttle actually behaves, we also analyze the shuttling operation and present a case study.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	LSTM-Shuttle is based on an LSTM recurrent neural network to which is added an <b>additional fully connected layer to predict forward or backward steps</b> after a softmax distribution. Given a text which denoted as x<sub>1</sub>,x<sub>2</sub>,...,x<sub>L</sub> or x<sub>1:L</sub>, LSTM-Shuttle first reads a fixed number of words sequentially and outputs the hidden state. Then, based on the hidden state, LSTM-Shuttle <b>computes the shuttle softmax distribution over the forward or backward steps on [-K, K]</b>. Given a <b>negative step value, LSTM-Shuttle goes back to correct misunderstandings</b>, and with a positive step value, LSTM-Shuttle speed reads, skimming unimportant words. After shuttling, <b>LSTM-Shuttle reads words sequentially and then proceeds to shuttle again</b>, iteratively. When stopping, the last hidden state is used to predict the desired task. The post-processing depends on the task. For instance, for classification, the hidden state generates a softmax distribution over the target class, and for cloze, it is used to find the correlation between the question article and each candidate answer.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Policy Gradient</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/pg.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	The objective function of &theta;<sub>U</sub> we seek to <b>maximize is the expected reward</b> under the distribution over &theta;<sub>U</sub> shuttle strategy. We compute an approximate gradient by <b>running M examples</b> with the REINFORCE algorithm. Though the approximation of &nabla;<sub>&theta;<sub>U</sub></sub>J<sub>2</sub>(&theta;<sub>U</sub>) is unbiased, it may have very high variance. One common way to <b>reduce this variance is to subtract a baseline value b</b> from the reward function R. We treat the bias value <b>b as the average reward from then until now</b>.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-1.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-2.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-3.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-4.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-5.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp18_lstm-shuttle/exp-6.png" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{fu2018lstm-shuttle, <br>
+      &emsp; author = {Tsu-Jui Fu and Wei-Yun Ma}, <br>
+      &emsp; title = {Speed Reading: Learning to Read ForBackward via Shuttle}, <br>
+      &emsp; booktitle = {Conference on Empirical Methods in Natural Language Processing (EMNLP)}, <br>
+      &emsp; year = {2018} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>
