@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChatSim</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="chat">
+            <div class="chat-container">
+                <div class="chat-listcontainer">
+                    <ul class="chat-message-list"></ul>
+                </div>
+            </div>
+            <br>
+            <input type="text" id="textfield" style="width: 70%; padding-left: 20px; padding-right: 20px; line-height: 2em; border-width: 0px; outline: none; border-radius: 50px; background: #cce6ff; color: black;">
+            &nbsp;
+            <input type="button" id="submit" value="send" style="width: 16%; line-height: 2em; border-width: 0px; border-radius: 50px; background: #FAEBD7;" onclick="pressBtn()">
+        </div>
+    </div>
+
+    <script  src="./sim.js"></script>
+</body>
+
+</html>
