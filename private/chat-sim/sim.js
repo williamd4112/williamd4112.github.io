@@ -26,7 +26,7 @@ $.each(chatMessages, function(index, obj) {
         chatTimeString = "<span class='message-time'>"+obj.time+"</span>";
     }
 
-    $(".chat-message-list").append("<li class='message-"+obj.align+" "+obj.name+"' hidden><div class='sp-"+obj.name+"'><span class='spinme-"+obj.align+"'><div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div></span></div><div class='messageinner-"+obj.name+"' hidden><span class='message-text'>"+obj.msg+"</span>"+chatTimeString+"</div></li>");
+    $(".chat-message-list").append("<li class='message-"+obj.align+" "+obj.name+"' hidden><div class='sp-"+obj.name+"'><span class='spinme-"+obj.align+"'><div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div></span></div><div class='messageinner-"+obj.name+"' hidden style=''>"+"<img src='p1.jpg' style='width: 50px; border-radius: 50%; vertical-align: bottom;' /> &nbsp;"+"<span class='message-text' style='max-width: 70%;'>"+obj.msg+"</span>"+chatTimeString+"</div></li>");
     
     $(msgname).delay(chatDelay).fadeIn();
     $(spinner).delay(chatDelay2).hide(1);
@@ -49,7 +49,7 @@ function sendMsg() {
     var msg = document.getElementById("textfield").value;
     var chatTimeString = "<span class='message-time'>"+"20:10"+"</span>";
 
-    document.getElementsByClassName("chat-message-list")[0].innerHTML = document.getElementsByClassName("chat-message-list")[0].innerHTML+"<li class='message-"+align+" "+name+"'><div class='messageinner-"+name+"'><span class='message-text'>"+msg+"</span>"+chatTimeString+"</div></li>";
+    document.getElementsByClassName("chat-message-list")[0].innerHTML = document.getElementsByClassName("chat-message-list")[0].innerHTML+"<li class='message-"+align+" "+name+"'><div class='messageinner-"+name+"'>"+"<span class='message-text' style='max-width: 70%;'>"+msg+"</span>"+"&nbsp; <img src='p2.jpg' style='width: 50px; border-radius: 50%; vertical-align: bottom;' />"+chatTimeString+"</div></li>";
     document.getElementById("textfield").value = "";
 
     document.getElementsByClassName("chat-container")[0].scrollTop = document.getElementsByClassName("chat-container")[0].scrollHeight;
