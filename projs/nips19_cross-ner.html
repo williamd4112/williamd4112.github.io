@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+<head>
+  <title>[AAAI'20] Why Attention? Analyzing and Remedying BiLSTM Deficiency in Modeling Cross-Context for NER</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Why Attention? Analyzing and Remedying BiLSTM Deficiency in Modeling Cross-Context for NER</span></center><br/>
+  <table align=center width=800px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://jacobvsdanniel.github.io/" target="_blank">Peng-Hsuan Li</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://www.iis.sinica.edu.tw/pages/ma/" target="_blank">Wei-Yun Ma</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">Academia Sinica, Taipei</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">AAAI Conference on Artificial Intelligence (<b>AAAI</b>) 2020, </span>
+          <br>
+          <span style="font-size: 22px">Conference on Neural Information Processing Systems (<b>NeurIPS</b>) 2019 (<b>workshop</b>)</span>
+          <br>
+          <span style="font-size: 22px"><a href="https://context-composition.github.io/" target="_blank">Context and Compositionality in Biological and Artificial Neural Systems</a> (<b>CNTXTCOMP</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/aaai20_cross-ner.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://github.com/jacobvsdanniel/cross-ner" target="_blank">[Code]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+      State-of-the-art approaches of NER have used sequence-labeling BiLSTM as a core module. This paper formally <b>shows the limitation of BiLSTM in modeling cross-context patterns</b>. Two types of simple cross-structures – self-attention and Cross-BiLSTM – are shown to effectively remedy the problem. On both OntoNotes 5.0 and WNUT 2017, clear and consistent improvements are achieved over barebone models, up to 8.7% on some of the multi-token mentions. In-depth analyses across several aspects of the improvements, especially the identification of multitoken mentions, are further given.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>XOR Limitation of Ordinary Multi-Layer BiLSTM</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/xor.png" width=600px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+      Finally, summing the first two inequalities and the last two inequalities gives two contradicting constraints that cannot be satisfied. In other words, even if an oracle is given to training the model, Baseline-BiLSTM-CNN can only tag at most 3 out of 4 "and" correctly. <b>No matter how many LSTM cells are stacked for each direction, the formulation in previous studies simply does not have enough modeling capacity</b> to capture cross-context patterns for sequence labeling NER.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1> Cross-BiLSTM-CNN</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/cross-lstm.png" width=600px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    As the forward and backward hidden states are interleaved between stacked LSTM layers, CrossBiLSTM-CNN models cross-context patterns by computing representations of the whole sequence in a feed-forward, additive manner.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Att-BiLSTM-CNN</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/att-lstm.png" width=400px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Another way to resolve the problem is to add a <b>self-attentive mechanism</b> on baseline BiLSTM. Att-BiLSTM-CNN correlates past and future context for each token in a dot-product, multiplicative manner.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/exp-1.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/exp-2.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_cross-ner/exp-3.png" width=800px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{li2019cross-ner, <br>
+      &emsp; author = {Peng-Hsuan Li and Tsu-Jui Fu and Wei-Yun Ma}, <br>
+      &emsp; title = {Why Attention? Analyzing and Remedying BiLSTM Deficiency in Modeling Cross-Context for NER}, <br>
+      &emsp; booktitle = {AAAI Conference on Artificial Intelligence (AAAI)}, <br>
+      &emsp; year = {2020} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

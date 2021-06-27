@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  
+<head>
+  <title>Zhang-Wei Hong</title>
+
+  <link rel="icon" href="assests/icon.png" />
+
+  <link rel="stylesheet" type="text/css" href="assests/style.css">
+  <link rel="stylesheet" type="text/css" href="assests/academicons.min.css">
+  <script src="assests/fontawesome.js"></script>
+
+  <script>
+    function pressBtn(p) {
+
+      var id_btn=["exp-btn", "pub-btn"], class_btn=["fas fa-plus-square", "fas fa-minus-square"];
+      var id_div=["exp-div", "pub-div"], style_div=["height: 300px; overflow: auto;", "height: 400px; overflow: auto;"];
+
+      var btn = document.getElementById(id_btn[p]);
+      if(btn.className == class_btn[0]) {
+        btn.className = class_btn[1];
+        document.getElementById(id_div[p]).style = "";
+      }
+      else {
+        btn.className = class_btn[0];
+        document.getElementById(id_div[p]).style = style_div[p];
+      }
+    }
+
+    function img_hover(e, f) {
+      e.setAttribute("src", f);
+    }
+    function img_unhover(e, f) {
+      e.setAttribute("src", f);
+    }
+  </script>
+</head>
+
+<body>
+  <table style="max-width: 900px;"><tbody>
+    <tr style="padding: 0px;">
+      <td style="padding: 0px;">
+
+        <!--bio-->
+        <table><tbody>
+          <tr style="padding: 0px;">
+            <td style="padding: 2%; width: 70%; vertical-align: middle;">
+
+              <p style="text-align: center;">
+                <name>Zhang-Wei Hong</name>
+              </p>
+
+              <p>
+                Starting from Fall 2020, I'm a Ph.D. student in Computer Science at <a href="https://www.mit.edu/">Massachusetts Institute of Technology (MIT)</a>, advised by Prof. <a href="http://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a>. The ultimate goal of my research is to create an autonomous robot that can survive in unknown environments and learn necessary knowledge without any human intervention. To this end, I'm studying <b>Reinforcement Learning</b> with an emphasis on <b>intrinsically motivated exploration</b> in continual learning scenarios.
+              </p>
+
+              <p>
+                I finished my B.S. degree and M.S. degree at National Tsing Hua University in close colloaboration with Prof. <a href="https://scholar.google.com/citations?user=5mYNdo0AAAAJ&hl=en">Chun-Yi Lee</a> and Prof. <a href="https://aliensunmin.github.io/">Min Sun</a>. Previously, I was fortunate to work with Prof. <a href="https://www.ias.informatik.tu-darmstadt.de/Team/JanPeters">Jan Peters</a> at TU Darmstadt in Germany. Also, I was working at <a href="https://preferred.jp/en/company/">Preferred Networks</a> with Dr. <a href="https://gjmaeda.github.io/">Guilherme Maeda</a> and <a href="https://prabhatnagarajan.com/">Prabhat Nagarajan</a>.
+              </p>
+              
+              <p style="text-align: center;">
+                <a href="mailto:zwhong@mit.edu" target="_blank"><i class="fas fa-envelope ai-2x"></i></a>&nbsp;
+                <a href="https://github.com/williamd4112" target="_blank"><i class="fab fa-github ai-2x"></i></a>&nbsp;
+                <a href="files/zhangwei-cv.pdf" target="_blank"><i class="ai ai-cv-square ai-2x"></i></a>&nbsp;
+                <a href="https://scholar.google.com/citations?user=GZkyN4cAAAAJ&hl" target="_blank"><i class="ai ai-google-scholar-square ai-2x"></i></a>&nbsp;
+              </p>
+            </td>
+
+            <td style="padding: 2%; width: 25%; max-width: 25%;">
+              <img src="assests/profile.jpeg" style="border-radius: 50%;" onmouseover="img_hover(this, 'assests/profile.jpeg');" onmouseout="img_unhover(this, 'assests/profile.jpeg');" />
+            </td>
+          </tr>
+        </tbody></table>
+
+        <!--experience-->
+        <table><tbody>
+          <tr>
+            <td class="all">
+              <heading>
+                <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Experience<i class="fas fa-plus-square" style="float: right;" onclick="pressBtn(0)" id="exp-btn"></i>
+              </heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <br>
+        <div style="height: 300px; overflow: auto;" id="exp-div">
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_pfn.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Intern</b>
+                  <span style="float: right;">Jun. 2019 - Oct. 2019</span> 
+                  <br>
+                  <a href="https://www.preferred-networks.jp/en/" target="_blank">Preferred Networks</a>
+                  <br>
+                  Advisor: <a href="https://prabhatnagarajan.com/">Prabhat Nagarajan</a> and Dr. <a href="https://gjmaeda.github.io/">Guilherme Maeda</a>.
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_appier.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research intern</b>
+                  <span style="float: right;">Feb. 2019 - Jun. 2019</span> 
+                  <br>
+                  <a href="https://www.appier.com//" target="_blank">Appier</a>
+                  <br>
+                  Advisor: Prof. <a href="https://aliensunmin.github.io" target="_blank">Min Sun</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_tud.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Visiting researcher</b>
+                  <span style="float: right;">Jul. 2018 - Oct. 2018</span> 
+                  <br>
+                  <a href="https://www.ias.informatik.tu-darmstadt.de/" target="_blank">Intelligent Autonomous System (IAS) group at TU Darmstadt</a>
+                  <br>
+                  Advisor: Prof. <a href="https://www.ias.informatik.tu-darmstadt.de/Team/JanPeters" target="_blank">Jan Peters</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_elsa.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Research Assistant</b>
+                  <span style="float: right;">2017 Jul. - 2020 Mar.</span> 
+                  <br>
+                  <a href="https://www.facebook.com/ElsaResearchLab/" target="_blank">ELSA Lab at National Tsing Hua University</a>
+                  <br>
+                  Advisor: Prof. <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="exp-avatar">
+                <img src="imgs/avatar_nthu.png" />
+              </td>
+              
+              <td class="exp-description">
+                <b>Research Collaboration</b>
+                <span style="float: right;">2016 Oct. - 2017 Mar.</span> 
+                <br>
+                <a href="https://aliensunmin.github.io/lab/info.html" target="_blank">Vision Science Lab at National Tsing Hua University</a>
+                <br>
+                Advisor: Prof. <a href="https://aliensunmin.github.io/" target="_blank">Min Sun</a>
+              </td>
+            </tr>
+        </tbody></table>
+        <br>
+        <table><tbody>
+          <tr>
+            <td class="exp-avatar">
+              <img src="imgs/avatar_nvidia.png" />
+            </td>
+            
+            <td class="exp-description">
+              <b>Teaching Assistant</b>
+              <span style="float: right;">2017 - 2018</span> 
+              <br>
+              <a href="https://www.nvidia.com/zh-tw/" target="_blank">Taiwan NVIDIA Deep Learning Institute</a>
+              <br>
+              Advisor: Prof. <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+            </td>
+          </tr>
+      </tbody></table>
+      <br>
+        <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_mtk.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Software Engineering Intern</b>
+                  <span style="float: right;">Jul. 2016 - Nov. 2016</span> 
+                  <br>
+                  <a href="https://www.mediatek.com/" target="_blank">Mediatek</a>
+                  <br>
+                  Advisor: <a href="https://www.linkedin.com/in/antliu/?originalSubdomain=tw/" target="_blank">Anthony Liu</a>
+                </td>
+              </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+              <tr>
+                <td class="exp-avatar">
+                  <img src="imgs/avatar_itri.png" />
+                </td>
+                
+                <td class="exp-description">
+                  <b>Contract Software Engineer</b>
+                  <span style="float: right;">Oct. 2015 - Dec. 2015</span> 
+                  <br>
+                  <a href="https://www.itri.org.tw/english/" target="_blank">Industrial Technology Research Institute (ITRI) </a>
+                </td>
+              </tr>
+          </tbody></table>
+        </div>
+        <br><br>
+
+        <!--publications-->
+        <table><tbody>
+          <tr>
+            <td class="all">
+              <heading>
+                <i class="far fa-file-alt"></i>&nbsp;&nbsp;Publications<i class="fas fa-plus-square" style="float: right;" onclick="pressBtn(1)" id="pub-btn"></i>
+              </heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <br>
+        <div style="height: 400px; overflow: auto;" id="pub-div">
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_icra2021.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Reducing the Deployment-Time Inference Control Costs of Deep Reinforcement Learning Agents via an Asymmetric Architecture</papertitle>
+                <br>
+                <I>Chin-Jui Chang, Yu-Wei Chu, Chao-Hsien Ting, Hao-Kang Liu, <b>Zhang-Wei Hong</b>, and Chun-Yi Lee</I>
+                <br>
+                  International Conference on Robotics and Automation (ICRA) 2021 - Conference paper
+                <br>
+                <a href="pubs/icra2021.pdf" target="_blank">Paper</a>
+              </td>
+            </tr>
+          </tbody></table>
+
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_ecml2021.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Periodic Intra-Ensemble Knowledge Distillation for Reinforcement Learning</papertitle>
+                <br>
+                <I><b>Zhang-Wei Hong</b>, Prabhat Nagarajan, and Guilherme Maeda</I>
+                <br>
+                  European Conference on Machine Learning (ECML) 2021 - Conference paper
+                <br>
+                <a href="pubs/ecml2021.pdf" target="_blank">Paper</a>
+              </td>
+            </tr>
+          </tbody></table>
+
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_self-adv.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Adversarial Active Exploration for Inverse Dynamics Model Learning</papertitle>
+                <br>
+                <I><b>Zhang-Wei Hong</b>, Tsu-Jui Fu, Tzu-Yun Shann, Yi-Hsiang Chang, and Chun-Yi Lee</I>
+                <br>
+                  Conference on Robot Learning (CoRL) 2019 - Oral
+                <br>
+                <a href="pubs/corl19_self-adv.pdf" target="_blank">Paper</a> | <a href="projs/corl19_self-adv.html" target="_blank">Project</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_div-exploration.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</papertitle>
+                <br>
+                <I><b>Zhang-Wei Hong</b>, Tzu-Yun Shann, Shih-Yang Su, Yi-Hsiang Chang, Tsu-Jui Fu, and Chun-Yi Lee</I>
+                <br>
+                  Neural Information Processing Systems (NeurIPS) 2018 - Poster
+                <br>
+                  International Conference on Representation Learning (ICLR) Workshop 2018
+                <br>
+                <a href="pubs/nips18_div-driven.pdf" target="_blank">Paper</a> | <a href="projs/nips18_div-driven.html" target="_blank">Project</a>
+              </td>
+            </tr>
+        </tbody></table>
+        <br>
+        
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_ijcai2018_v2r.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Virtual-to-Real: Learning to Control in Visual Semantic Segmentation</papertitle>
+                <br>
+                <I><b>Zhang-Wei Hong</b>, Chen Yu-Ming, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, Hsuan-Kung Yang, Brian Hsi-Lin Ho, Chih-Chieh Tu, Yueh-Chuan Chang, Tsu-Ching Hsiao, Hsin-Wei Hsiao, Sih-Pin Lai, and Chun-Yi Lee</I>
+                <br>
+                  International Joint Conference on Artificial Intelligence (IJCAI) 2018 - Oral
+                <br>
+                <a href="pubs/ijcai2018_v2r.pdf" target="_blank">Paper</a> | <a href="https://hellochick.github.io/projects/Sim-to-Real" target="_blank">Project
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_aamas2018_dpiqn.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Deep Policy Inference Q-Network for Multi-Agent Systems</papertitle>
+                <br>
+                <I><b>Zhang-Wei Hong</b>, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, and Chun-Yi Lee</I>
+                <br>
+                International Conference On Autonomous Agents and Multi-Agent Systems (AAMAS) 2018 - Oral
+                <br>
+                <a href="pubs/aamas2018_dpiqn.pdf" target="_blank">Paper</a>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_ijcai2017_adv.gif" />
+              </td>
+
+              <td class="pub-description">
+                <papertitle>Tactics of adversarial attack on deep reinforcement learning agents</papertitle>
+                <br>
+                <I>Yen-Chen Lin, <b>Zhang-Wei Hong</b>, Yuan-Hong Liao, Meng-Li Shih, Ming-Yu Liu, and Min Sun </I>
+                <br>
+                  International Joint Conference on Artificial Intelligence (IJCAI) 2018 - Poster
+                <br>
+                <a href="pubs/ijcai2017_adv.pdf" target="_blank">Paper</a> | <a href="https://yenchenlin.me/adversarial_attack_RL/" target="_blank">Project</a>
+              </td>
+            </tr>
+          </tbody></table>
+         
+       
+          <!--<table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_l2c.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>L2C: Describing Visual Differences Needs Semantic Understanding of Individuals</papertitle>
+                <br>
+                <I>An Yang, Xin Wang, <b>Tsu-Jui Fu</b>, and William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_sscr.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>SSCR: Iterative Language-Based Image Editing via Self-Supervised Counterfactual Reasoning</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b>, Xin Wang, Scott Grafton, Miguel Eckstein, and William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_mtst.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Multimodal Style Transfer Learning for Outdoor Vision-and-Language Navigation</papertitle>
+                <br>
+                <I>Wanrong Zhu, Xin Wang, <b>Tsu-Jui Fu</b>, An Yan, Pradyumna Narayana, Kazoo Sone, Sugato Basu, William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>
+          <table><tbody>
+            <tr>
+              <td class="pub-avatar">
+                <img src="imgs/avatar_ssi.png" />
+              </td>
+              
+              <td class="pub-description">
+                <papertitle>Self-Supervised Policy Initialization for Playing Games with Language Hints</papertitle>
+                <br>
+                <I><b>Tsu-Jui Fu</b> and William Yang Wang</I>
+              </td>
+            </tr>
+          </tbody></table>
+          <br>-->
+
+        </div>
+        <br><br>
+
+        <!--teaching-->
+        <table><tbody>
+            <tr>
+              <td class="all">
+                <heading><i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;Teaching</heading>
+              </td>
+            </tr>
+            <tr>
+              <td class="all">
+
+                <br>
+                <b>Teacher Assistant</b>, <a href="https://www.nvidia.com/zh-tw/deep-learning-ai/education/" target="_blank">Deep Learning Institute</a>, <a href="https://www.nvidia.com/zh-tw/" target="_blank">NVIDIA Taiwan</a>
+                <span style="float: right">Spring 2018</span>
+               
+              </td>
+            </tr>
+        </tbody></table>
+        <br><br>
+
+      
+        <!--boreder-->
+        <table><tbody>
+          <tr>
+            <td style="padding: 0px">
+              <br>
+              <p style="text-align: center;">
+                template from <a href="https://jonbarron.info" target="_blank">jonbarron</a>
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

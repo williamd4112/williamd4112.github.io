@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+<head>
+  <title>[EMNLP'19 WS] H-FND: Hierarchical False-Negative Denoising for Robust Distantly-Supervised Relation Extraction</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">H-FND: Hierarchical False-Negative Denoising for Robust Distantly-Supervised Relation Extraction</span></center><br/>
+  <table align=center width=500px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://www.iis.sinica.edu.tw/pages/ma/" target="_blank">Wei-Yun Ma</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">Academia Sinica, Taipei</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Conference on Empirical Methods in Natural Language Processing (<b>EMNLP</b>) 2019 (<b>workshop</b>)</span>
+          <br>
+          <span style="font-size: 22px"><a href="https://sites.google.com/view/deeplo19/home" target="_blank">Deep Learning for Low-Resource NLP</a> (<b>DeepLo</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/emnlp19_h-fnd.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=800px>
+    <center><img src = "emnlp19_h-fnd/tp-fp-fn.png" width=800px /></center>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Distant supervision is a popular method for relation extraction, but is vulnerable to <b>false-negative (FN)</b> sentences. Treating FN input as non-relation training sentences can lead to degraded final model performance. Here, we present <b>H-FND</b>, a <b>hierarchical false-negative denoising framework</b> for robust relation extraction. H-FND uses a hierarchical policy which first <b>determines whether non-relation (NA) sentences should be kept, discarded, or revised</b> during training. Then the policy revises those into appropriate relations for better training input. We conducted experiments on SemEval-2010 and randomly filtered ratios of training/validation sentences into NA. The results show that H-FND <b>revises FN sentences correctly and maintains high F1 scores</b> even when 50% of the sentences have been filtered as NA.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "emnlp19_h-fnd/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    H-FND is composed of <b>a relation classifier and a hierarchical denoising policy</b>. Both share a CNN encoder which extracts the sentence features of an input sentence. The CNN encoder contains <b>an embedding layer, a convolutional layer, and a max pooling layer</b>. The proposed denoising policy in H-FND is a hierarchical model which first <b>determines that an NA sentence should be kept (maintain NA), discarded (remove out from training/validation), or revised (predict the correct label)</b>. Then, if it is to be revised, the <b>policy determines an adequate relation</b> as its revised relation.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Co-Training Framework</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    <ol>
+      <li><b>Dataset Denoising</b>:<br>For the training set, the policy keeps, discards, or revises the NA sentences. For the validation set, to obtain better results, we choose only to keep or revise those NA relations. After denoising, we have the revised training/validation set.</li>
+      <br>
+      <li><b>CNN Model Training</b>:<br>Given the revised training set, we train the CNN model in a supervised fashion based on the categorical loss.</li>
+      <br>
+      <li><b>Reward Determination</b>:<br>We evaluate trained CNN model on the revised validation set to obtain the F1 score, which we view as reward R.</li>
+      <br>
+      <li><b>Denoising Policy Update</b>:<br>Since the sampling step in the denoising policy is undifferentiable, here we adopt policy gradient to optimize the denoising policy by maximizing R.</li>
+    </ol>
+    For each epoch, we obtain the revised set from the original training/validation set via the denoising policy, after which H-FND <b>finds the best denoising policy adaptively between supervised training and reward maximization</b>.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "emnlp19_h-fnd/exp-1.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp19_h-fnd/exp-2.png" width=400px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "emnlp19_h-fnd/exp-3.png" width=1000px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{fu2019h-fnd, <br>
+      &emsp; author = {Tsu-Jui Fu and Wei-Yun Ma}, <br>
+      &emsp; title = {H-FND: Hierarchical False-Negative Denoising for Robust Distantly-Supervised Relation Extraction}, <br>
+      &emsp; booktitle = {Conference on Empirical Methods in Natural Language Processing Worshop (EMNLP WS)}, <br>
+      &emsp; year = {2019} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

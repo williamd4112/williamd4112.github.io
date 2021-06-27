@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[ICCD'19] A Distributed Scheme for Accelerating Semantic Video Segmentation on An Embedded Cluster</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">A Distributed Scheme for Accelerating Semantic Video Segmentation on An Embedded Cluster</span></center><br/>
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu*</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://hellochick.github.io/" target="_blank">Hsuan-Kung Yang*</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            Po-Han Chiang
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://thanatine.github.io/" target="_blank">Kuan-Wei Ho</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+          <span style="font-size:18px">* means equal contribution</span>
+          <br>
+          <span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">IEEE International Conference on Computer Design (<b>ICCD</b>) 2019 (<b>oral</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/iccd19_distributed-dvsnet.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/master-slave.png" width=250px /></center>
+  </table>
+  
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    We present a methodology for enhancing the throughput of semantic video segmentation tasks on an <b>embedded cluster containing multiple embedded processing elements (ePEs)</b>. The methodology embraces a <b>scalable master-slave hierarchy</b> and features a global and local key management scheme for allocating video frames to different ePEs. The <b>master ePE divides each video frame into frame regions, and dynamically distributes different regions to different slave ePEs</b>. Each <b>slave ePE executes either a segmentation path or a flow path</b>: the former is highly accurate but slower, while the latter is faster but less accurate. We propose <b>a global and local key management scheme to facilitate the execution of the embedded cluster</b>, such that the average processing latency of each frame is significantly reduced. We evaluate the performance of our methodology on a real embedded cluster in terms of accuracy and frame rate, and validate its effectiveness and efficiency for various ePE configurations.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    The proposed framework contains a master ePE and N slave ePEs, where N is a scalable integer. The <b>master ePE divides each input frame into four frame regions, and allocates each frame region to an available slave ePE</b> by dynamic scheduling to generate the semantic segmentation of the regions. The <b>unallocated frame regions are stored in a queue</b> managed by a workload manager, which is responsible for selecting an appropriate slave ePE to process the region stored at the head of the queue. The <b>master ePE is also responsible for gathering the semantic segmentations of the frame regions that belong to the same frame from the slave ePEs</b>, and assembling them to generate the final semantic segmentation of the frame. Each slave ePE has the same architecture (<a href="https://tsujuifu.github.io/projs/cvpr18_dvsnet.html" target="_blank">DVSNet</a>), except that the execution paths of different slave ePEs are allowed to be different.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Global and Local Key Management Scheme</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/global-local.png" width=550px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    The primary objective of the scheme is to <b>maintain a key buffer in each ePE to store segmentation logits and key frame regions</b>. The contents of the key buffers from different ePEs are not necessarily the same. However, global key buffer always keeps the newest information respectively for the four frame regions. When a slave ePE is selected by the workload manager to process a frame region, the master ePE <b>first compares the difference between timestamp of its global key buffer and that stored in the key table corresponding to the slave ePE</b>. If the <b>difference is larger than a threshold, the master ePE then forwards its logits to the slave ePE to update the corresponding entry in the local key buffer</b>. This ensures that the slave ePE has the new enough information. If a <b>slave ePE performs segmentation path for a frame region, the newly generated is transmitted back to the master ePE to update the global key buffer</b>, as well as the corresponding key table. This ensures that the global key buffer maintains the latest for the four frame regions, and allows the master ePE to keep track of the status of the slave ePEs.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/exp-1.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/exp-2.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/exp-3.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "iccd19_distributed-dvsnet/exp-4.png" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{yang2019distributed-dvsnet, <br>
+      &emsp; author = {Hsuan-Kung Yang and Tsu-Jui Fu and Po-Han Chiang and Kuan-Wei Ho and Chun-Yi Lee}, <br>
+      &emsp; title = {A Distributed Scheme for Accelerating Semantic Video Segmentation on An Embedded Cluster}, <br>
+      &emsp; booktitle = {IEEE International Conference on Computer Design (ICCD)}, <br>
+      &emsp; year = {2019} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

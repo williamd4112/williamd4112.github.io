@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+
+<html>
+
+
+<head>
+  <title>[ACCV'18] Region-Semantics Preserving Image Synthesis</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Region-Semantics Preserving Image Synthesis</span></center><br/>
+  <table align=center width=750px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            Kang-Jun Liu
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://www.cs.nthu.edu.tw/~shwu/" target="_blank">Shan-Hung Wu</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+          <span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Asian Conference on Computer Vision (<b>ACCV</b>) 2018</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/accv18_preserving-gan.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://github.com/tsujuifu/tensorflow_preserving-gan" target="_blank">[Code]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=300px>
+    <tr>
+      <td aligh=center width=645px>
+        <iframe src="https://www.youtube.com/embed/UwBjSUpjZU8" width=800px height=315px allowfullscreen></iframe>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    We study the problem of <b>region-semantics preserving (RSP) image synthesis</b>. Given a reference image and a region specification R, our goal is to train a model that is able to generate realistic and diverse images, each <b>preserving the same semantics</b> as that of the reference image within the region R. This problem is challenging because the model needs to (1) understand and preserve the marginal semantics of the reference region; i.e., the semantics excluding that of any subregion; and (2) maintain the compatibility of any synthesized region with the marginal semantics of the reference region. In this paper, we propose a novel model, called the fast <b>region-semantics preserver (Fast-RSPer)</b>, for the RSP image synthesis problem. The Fast-RSPer uses a pre-trained GAN generator and a pre-trained deep feature extractor to generate images without undergoing a dedicated training phase. This makes it particularly <b>useful for the interactive applications</b>. We conduct extensive experiments using the real-world datasets and the results show that Fast-PSPer can synthesize realistic, diverse RSP images efficiently.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    The Fast-RSPer that can produce high-quality RSP images and are <b>fast to run</b>. It is based on GANs but unlike most GANs where a generator and a discriminator are trained jointly, it uses a <b>pre-trained generator</b> and feeds the output (images) into a <b>pre-trained deep feature extractor</b>. Given a reference image and R, the Fast-RSPer synthesis an image by <b>finding (using the gradient descent) an input variable z</b> for the generator such that, at a deep layer where neurons <b>capture the semantics of the reference R</b>, the feature extractor <b>maps the synthesized region to features similar</b> to those of the reference region. Since both the generator and feature extractor are pre-trained, the Fast-RSPer has <b>no dedicated training phase</b> and can generate images efficiently.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Objective Function</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/obj.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Given a reference image x and a region specification R, the Fast-RSPer synthesizes an image by solving the <b>input z<sup>*</sup></b> for G first. &Phi; is a feature extractor, l is a sufficiently deep layer in &Phi;, and |.|<sup>(i)</sup><sub>mask</sub> is a <b>masked one-norm</b> taking into account only the dimensions/features/activations of neurons whose <b>receptive fields overlaps with R at layer i</b>. Then, the marginal semantics of the reference region is preserved in G(z<sup>*</sup>). On the other hand, the compatibility of <b>other regions in G(z<sup>*</sup>) with the semantics of the reference region is maintained implicitly by the GAN generator</b>-if the generator produced incompatible regions, it wouldn"t have fooled the discriminator during the GAN training process.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/exp-1.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/exp-2.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/exp-3.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/exp-4.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "accv18_preserving-gan/exp-5.jpg" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{liu2018preserving-gan, <br>
+      &emsp; author = {Kang-Jun Liu and Tsu-Jui Fu and Shan-Hung Wu}, <br>
+      &emsp; title = {Region-Semantics Preserving Image Synthesis}, <br>
+      &emsp; booktitle = {Asian Conference on Computer Vision (ACCV)}, <br>
+      &emsp; year = {2018} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

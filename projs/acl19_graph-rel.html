@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[ACL'19] GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction</span></center><br/>
+  <table align=center width=880px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://jacobvsdanniel.github.io/" target="_blank">Peng-Hsuan Li</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://www.iis.sinica.edu.tw/pages/ma/" target="_blank">Wei-Yun Ma</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">Academia Sinica, Taipei</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Annual Meeting of the Association for Computational Linguistics (<b>ACL</b>) 2019 (<b>long</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/acl19_graph-rel.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://github.com/tsujuifu/pytorch_graph-rel" target="_blank">[Code]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/poster.png" width=800px /></center>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	We present GraphRel, an end-to-end relation extraction model which uses graph convolutional networks (GCNs) to <b>jointly learn named entities and relations</b>. In contrast to previous baselines, we <b>consider the interaction between named entities and relations</b> via a 2nd-phase relation-weighted GCN to better extract relations. <b>Linear and dependency structures</b> are used to extract both sequential and regional features, and a complete word graph is further utilized to extract implicit features among all word pairs of the text. Results show that GraphRel maintains high precision while increasing recall substantially and outperforms previous work by 3.2% and 5.8%.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	The overall architecture of the proposed GraphRel which contains <b>2 phases prediction</b>. In the 1st-phase, we <b>adopt bi-RNN and GCN to extract both sequential and regional dependency</b> word features. Given the word features, we <b>predict relations for each word pair</b> and the entities for all words. Then, in 2nd-phase, based on the predicted 1st-phase relations, we build complete relational graphs for each relation, to which we <b>apply GCN on each graph to integrate each relation’s information</b> and further consider the interaction between entities and relations.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Bi-GCN on Dependency Tree</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/bi-gcn.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	As convolutional neural network (CNN), Graph Convolutional Network (GCN) <b>convolves the features of neighboring nodes and also propagates the information</b> of a node to its nearest neighbors. A GCN layer retrieves new node features by considering neighboring nodes’ features. We use <b>dependency parser to parse input sentence</b> into a dependency tree and adopt GCN to <b>extract regional dependency features</b>.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>2nd-phase Prediction</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/2-phase.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    After 1st-phase prediction, we build complete <b>relation-weighted graph for each relation</b> where the edge of (w1, w2) is P(w1, w2). Then, 2nd-phase adopts bi-GCN on each relation graph which <b>considers different influenced degrees of different relations</b> and aggregates as the comprehensive word feature. With the newer word features from 2nd-phase, we <b>perform named entity and relation classification again</b> for more robust relation prediction.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/exp-1.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/exp-2.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/exp-3.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "acl19_graph-rel/exp-4.png" width=800px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{fu2019graph-rel, <br>
+      &emsp; author = {Tsu-Jui Fu and Peng-Hsuan Li and Wei-Yun Ma}, <br>
+      &emsp; title = {GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction}, <br>
+      &emsp; booktitle = {Annual Meeting of the Association for Computational Linguistics (ACL)}, <br>
+      &emsp; year = {2019} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

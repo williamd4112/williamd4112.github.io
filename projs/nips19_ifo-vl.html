@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+<head>
+  <title>[NIPS'19 WS] Learning from Observation-Only Demonstration for Task-Oriented Language Grounding via Self-Examination</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Learning from Observation-Only Demonstration for Task-Oriented Language Grounding via Self-Examination</span></center><br/>
+  <table align=center width=800px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://2boy.org/~yuta/" target="_blank">Yuta Tsuboi</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://soskek.github.io/" target="_blank">Sosuke Kobayashi</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            Yuta Kikuchi
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">Preferred Networks, Tokyo</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Conference on Neural Information Processing Systems (<b>NeurIPS</b>) 2019 (<b>workshop</b>)</span>
+          <br>
+          <span style="font-size: 22px"><a href="https://vigilworkshop.github.io/" target="_blank">Visually Grounded Interaction and Language</a> (<b>ViGIL</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/nips19_ifo-vl.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/task.png" width=900px /></center>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Imitation learning is an effective method for learning a control policy from expert demonstrations. Combining imitation with natural language instruction promises to further make imitation learning more flexible and useful in real-world applications. However, <b>most existing imitation methods rely on the assumption demonstrations also contain action sequences and that the agent can interact with them to explore alternative trajectories in the space</b>, which greatly limits the practicality of such methods. We focus on <b>imitation learning with observation-only language-conditional demonstrations</b> in which ground truth action sequences are not explicitly given. We propose a method which <b>initially pre-trains modules to capture the inverse dynamics of the world and learns how to describe the demonstration in natural language</b>. In a second phase, these modules are used to <b>generate additional training instances which can be explored self-examination</b>. We evaluate our method on pick-and-place tasks show that the self-examination improves language grounding.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Instead of interacting with demonstrations, we introduce a two-phase method to train policies in a simulator. In the 1st pre-training phase, we train <b>1) inverse module</b> which estimates actions of demonstration states, <b>2) instruction module</b> which selects an appropriate instruction for states not observed in the demonstrations, and <b>3) reward module</b> which estimates a reward during a simulation. Actions estimated by the inverse module are used for not only the training of the reward module but also the pre-training of a policy. In the 2nd-phase, we further improve the policy in the simulation. The <b>instruction module selects a pseudo instruction for the initial state</b> and a <b>reward module gives reward feedback to actions performed by the policy</b>, what we call self-examination. In this way, we can <b>try-and-error under visual-language setting of observation-only imitation learning</b>.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Pre-training Phase</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    <ol>
+      <li><b>Inverse Module</b>:<br>We first <b>collect numerous state-action pairs (s<sub>i</sub>, s<sub>i+1</sub>, a<sub>i</sub>) by randomly performing actions in the simulator</b>. Using these pairs, we train an inverse module which predicts an action for realizing a transition between two consecutive states. After the training, the <b>unobserved actions in the demonstrations can be estimated</b> using this inverse module.</li> 
+      <br>
+      <li><b>Instruction Module</b>:<br>Since language instructions are not available in the simulation, for an initial state, the instruction module <b>selects a suitable instruction from an instruction pool</b>. The instruction module is <b>trained as a binary classifier which discriminates that whether the correct state-instruction pair</b> or not.</li>
+      <br>
+      <li><b>Reward Module</b>:<br>A reward module gives a reward feedback to the policy in the simulation. We consider the <b>actions labeled by the inverse module in the demonstrations as the positive cases</b> and randomly different actions as negative cases during the pre-training.</li>
+      <br>
+      <li><b>Action Policy</b>:<br> A policy maps current state and instruction to next action. At the pre-training phase, <b>behavioral cloning is employed to train a policy using demonstrations and the labeled action</b> which is estimated by the inverse module.</li>
+    </ol>
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Self-examination Phase</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/algo.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    With the instruction module and the reward module, we can further improve the policy in the simulator. Firstly, we randomly generate an initial state and <b>select its instruction by the instruction module</b>. Then, using the simulator, the policy repeat the rollout from current state to next state by predicting a next action. <b>After these rollouts, we apply the reward module to give reward feedback for each step of the execution trajectory</b>. Finally, we <b>update the policy via Policy Gradient method</b>. The reward module is also updated at this stage by adding the actions the policy performed to the negative examples. In the this process, the policy can try-and-error under different states and different instructions without interacting with demonstrations themselves.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/exp-1.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/exp-2.png" width=300px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/exp-3.png" width=300px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/exp-4.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips19_ifo-vl/exp-5.png" width=1000px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{fu2019ifo-vl, <br>
+      &emsp; author = {Tsu-Jui Fu and Yuta Tsuboi and Sosuke Kobayashi and Yuta Kikuchi}, <br>
+      &emsp; title = {Learning from Observation-Only Demonstration for Task-Oriented Language Grounding via Self-Examination}, <br>
+      &emsp; booktitle = {Conference on Neural Information Processing Systems Workshop (NeurIPS WS)}, <br>
+      &emsp; year = {2019} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

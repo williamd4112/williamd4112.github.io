@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[ECCV'18 WS] Visual Relationship Prediction via Label Clustering and Incorporation of Depth Information</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Visual Relationship Prediction via Label Clustering and Incorporation of Depth Information</span></center><br/>
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://hellochick.github.io/" target="_blank">Hsuan-Kung Yang</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://anjiezheng.github.io/" target="_blank">An-Chieh Cheng*</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://thanatine.github.io/" target="_blank">Kuan-Wei Ho*</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size:18px">* means equal contribution</span>
+        	<br>
+        	<span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">European Conference on Computer Vision (<b>ECCV</b>) 2018 (<b>workshop</b>)</span>
+          <br>
+          <span style="font-size: 22px"><b>2<sup>nd</sup></b> place at <a href="http://picdataset.com/challenge/index/" target="_blank">Person In Context</a> (<b>PIC</b>) Challenge</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/eccv18_pic.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	In this paper, we investigate the use of an <b>unsupervised label clustering</b> technique and demonstrate that it enables substantial improvements in <b>visual relationship prediction</b> accuracy on the Person in Context (<b>PIC</b>) dataset. We propose to group object labels with similar patterns of relationship distribution in the dataset into fewer categories. Label clustering not only mitigates both the large classification space and class imbalance issues, but also potentially <b>increases data samples for each clustered category</b>. We further propose to <b>incorporate depth information</b> as an additional feature into the instance segmentation model. The additional depth prediction path supplements the relationship prediction model in a way that bounding boxes or segmentation masks are unable to deliver. We have rigorously evaluated the proposed techniques and performed various ablation analysis to validate the benefits of them.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "eccv18_pic/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	Our framework consists of three components: an <b>instance segmentation network</b> (blue part), a <b>depth prediction network</b> (red part), and a <b>gradient boosting classifier</b> (purple part). The instance segmentation network is based on the implementation of <b>Mask R-CNN</b>, which includes feature extraction layers, a region of interest (RoI) alignment layer, two convolutional layers for mask prediction, and a fullyconnected (FC) layer for predicting <b>class labels and bounding boxes for the objects</b> contained in the figure. The depth prediction network is based on the implementation of <b>Monodepth</b>, which evaluates a depth map for the input image. The depth map is then averaged within the mask region predicted by the instance segmentation network to generate an <b>averaged masked depth map for the corresponding object instance</b>. Finally, the bounding boxes, masks, and the averaged masked depth maps are all fed into the<b>gradient boosting classifier to predict relations</b> between the objects in the input image.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Clustering</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	We reduce the 85 human-object categories by implementing <b>unsupervised clustering on 85 human-object categories</b> based on their relation"s frequency distribution. The unsupervised clustering approach is based on the thought that <b>multiple objects might share the same frequency distribution</b> of relations. The clustering in advance helps model to <b>reduce the computation space when outputting relation label</b> as classification and augment categories with less data by clustering them with other categories to accumulate data at the same time. We choose <b>K-means</b> clustering as our clustering algorithm.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "eccv18_pic/exp-1.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "eccv18_pic/exp-2.png" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{yang2018pic, <br>
+      &emsp; author = {Hsuan-Kung Yang and An-Chieh Cheng and Kuan-Wei Ho and Tsu-Jui Fu and Chun-Yi Lee}, <br>
+      &emsp; title = {Visual Relationship Prediction via Label Clustering and Incorporation of Depth Information}, <br>
+      &emsp; booktitle = {European Conference on Computer Vision Workshop (ECCV WS)}, <br>
+      &emsp; year = {2018} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[CoRL'19] Adversarial Active Exploration for Inverse Dynamics Model Learning</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Adversarial Active Exploration for Inverse Dynamics Model Learning</span></center><br/>
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://williamd4112.github.io/" target="_blank">Zhang-Wei Hong</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://lasirenashann.github.io/" target="_blank">Tzu-Yun Shann</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            Yi-Hsiang Chang
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+          <span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Conference on Robot Learning (<b>CoRL</b>) 2019 (<b>oral</b>)</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/corl19_self-adv.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    We present an <b>adversarial active exploration for inverse dynamics model learning</b>, a simple yet effective learning scheme that incentivizes exploration in an environment without any human intervention. Our framework consists of a deep reinforcement learning (DRL) agent and an inverse dynamics model contesting with each other. The former <b>collects training samples for the latter, with an objective to maximize the error of the latter</b>. <b>The latter is trained with samples collected by the former, and generates rewards for the former</b> when it fails to predict the actual action taken by the former. In such a competitive setting, the <b>DRL agent learns to generate samples that the inverse dynamics model fails to predict correctly, while the inverse dynamics model learns to adapt to the challenging samples</b>. We further propose a reward structure that ensures the DRL agent to collect only moderately hard samples but not overly hard ones that prevent the inverse model from predicting effectively. Experimental results show that our method is comparable to those directly trained with expert demonstrations, and superior to the other baselines even without any human priors.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/overview.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    We implement the proposed method by jointly training a deep reinforcement learning (DRL) agent and an inverse dynamics model competing with each other. The former <b>explores the environment to collect training data for the latter, and receives rewards from the latter if the data samples are considered difficult</b>. The latter is <b>trained with the data collected by the former, and only generates rewards when it fails to predict the true actions performed by the former</b>. In such an adversarial setting, the DRL agent is rewarded only for the failure of the inverse dynamics model. Therefore, the <b>DRL agent learns to sample hard examples to maximize the chances to fail the inverse dynamics model</b>. On the other hand, the <b>inverse dynamics model learns to be robust to the hard examples collected by the DRL agent by minimizing the probability of failures</b>. As a result, as the inverse dynamics model becomes stronger, the DRL agent is also incentivized to search for harder examples to obtain rewards.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Algorithm</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/algo.png" width=800px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/exp-1.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/exp-2.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/exp-3.png" width=800px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "corl19_self-adv/exp-4.png" width=800px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{hong2019self-adv, <br>
+      &emsp; author = {Zhang-Wei Hong and Tsu-Jui Fu and Tzu-Yun Shann and Yi-Hsiang Chang and Chun-Yi Lee}, <br>
+      &emsp; title = {Adversarial Active Exploration for Inverse Dynamics Model Learning}, <br>
+      &emsp; booktitle = {Conference on Robot Learning (CoRL)}, <br>
+      &emsp; year = {2019} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

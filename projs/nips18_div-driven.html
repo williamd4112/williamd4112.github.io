@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[NIPS'18] Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</title>
+  
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</span></center><br/>
+  <table align=center width=1050px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://williamd4112.github.io/" target="_blank">Zhang-Wei Hong</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://lasirenashann.github.io" target="_blank">Tzu-Yun Shann</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://lemonatsu.github.io/" target="_blank">Shih-Yang Su</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            Yi-Hsiang Chang
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+        	<span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">Conference on Neural Information Processing Systems (<b>NIPS</b>) 2018</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/nips18_div-driven.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+  <br>
+
+  <table align=center width=300px>
+    <tr>
+      <td aligh=center width=645px>
+        <iframe src="https://youtube.com/embed/CxKT5ua-w4U" width=645px height=367px allowfullscreen></iframe>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	Efficient exploration remains a challenging research problem in reinforcement learning, especially when an environment contains large state spaces, deceptive local optima, or sparse rewards. To tackle this problem, we present a <b>diversity-driven approach</b> for exploration, which can be easily combined with both off- and on-policy reinforcement learning algorithms. We show that by simply <b>adding a distance measure to the loss function, the proposed methodology significantly enhances an agent"s exploratory behaviors</b>, and thus preventing the policy from being trapped in local optima. We further propose an adaptive scaling method for stabilizing the learning process. We demonstrate the effectiveness of our method in huge 2D gridworlds and a variety of benchmark environments, including Atari 2600 and MuJoCo. Experimental results show that our method outperforms baseline approaches in most tasks in terms of mean scores and exploration efficiency.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips18_div-driven/overview.png" width=600px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	Diversity-driven exploration is an effective way to motivate an agent to <b>examine a richer set of states</b>, as well as provide it with an approach to escape from sub-optimal policies. This can be achieved by <b>modifying the loss function L<sub>D</sub></b> as above. L indicates the loss function of any arbitrary DRL algorithms, &pi; is the current policy, &pi;&prime; is a policy sampled from a limited set of the most recent policies &Pi;&prime;, D is a distance measure between &pi; and &pi;&prime;, and &alpha; is a scaling factor for D. First, it drives an agent to <b>proactively attempt new policies</b>, increasing the opportunities to visit novel states even in the absence of reward signals. Second, the <b>distance measure D motivates exploration</b> by modifying an agent"s current policy &pi;, instead of altering its behavior randomly. Third, it allows an agent to <b>perform either greedy or stochastic policies</b> while exploring effectively in the training phase. These three properties allow a DRL agent to explore an environment in a systematic and consistent manner.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Implementation</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	<h3>
+  		DQN <br><br>
+  		<img src="nips18_div-driven/dqn.png" width=90% />
+  	</h3>
+  	<h3>
+  		DDPG <br><br>
+  		<img src="nips18_div-driven/ddpg.png" width=90% />
+  	</h3>
+  	<h3>
+  		A2C <br><br>
+  		<img src="nips18_div-driven/a2c.png" width=90% />
+  	</h3>
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Adaptive Scaling</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips18_div-driven/adaptive-scaling.png" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+  	We define &alpha;<sub>i</sub> in one of the above 2 strategies. The <b>proactive strategy</b> incentivizes the current policy &pi; to <b>converge to the high-performing policies</b> in &Pi;&prime;, while keeping away from the poor ones. On the other hand, the <b>reactive strategy</b> only motivates &pi; to <b>stay away from the underperforming</b> policies.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "nips18_div-driven/exp-1.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips18_div-driven/exp-2.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "nips18_div-driven/exp-3.png" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 800px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{hong2018div-driven, <br>
+      &emsp; author = {Zhang-Wei Hong and Tzu-Yun Shann and Shih-Yang Su and Yi-Hsiang Chang and Tsu-Jui Fu and Chun-Yi Lee}, <br>
+      &emsp; title = {Diversity-Driven Exploration Strategy for Deep Reinforcement Learning}, <br>
+      &emsp; booktitle = {Conference on Neural Information Processing Systems (NIPS)}, <br>
+      &emsp; year = {2018} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>

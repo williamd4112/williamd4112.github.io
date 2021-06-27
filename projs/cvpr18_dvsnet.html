@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>[CVPR'18] Dynamic Video Segmentation Network</title>
+
+  <link rel="stylesheet" href="template.css">
+  <link rel="icon" href="../assests/icon.png">
+</head>
+
+<body>
+  <br>
+
+  <div class="home">
+    <center>
+      <a href="https://tsujuifu.github.io"><img src="home.png" width=60px /></a>
+    </center>
+  </div>
+
+  <center><span style="font-size: 44px; font-weight: bold;">Dynamic Video Segmentation Network</span></center><br/>
+  <table align=center width=750px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://xusean0118.github.io/" target="_blank">Yu-Syuan Xu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://tsujuifu.github.io/" target="_blank">Tsu-Jui Fu</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://hellochick.github.io/" target="_blank">Hsuan-Kung Yang</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="http://cymaxwelllee.wixsite.com/elsa" target="_blank">Chun-Yi Lee</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px style="padding-top: 0px; padding-bottom: 20px;">
+    <tr>
+      <td align=center width=600px>
+        <center>
+          <span style="font-size: 22px">National Tsing Hua University, Hsinchu</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=1000px>
+    <tr>
+      <td align=center width=650px>
+        <center>
+          <span style="font-size: 22px">IEEE Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>) 2018</span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <table align=center width=600px>
+    <tr>
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="../pubs/cvpr18_dvsnet.pdf" target="_blank">[Paper]</a>
+          </span>
+        </center>
+      </td>
+
+      <td align=center width=150px>
+        <center>
+          <span style="font-size: 22px">
+            <a href="https://github.com/XUSean0118/DVSNet" target="_blank">[Code]</a>
+          </span>
+        </center>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table align=center width=300px>
+    <tr>
+      <td aligh=center width=645px>
+        <iframe src="https://youtube.com/embed/vadYHOyUVXs" width=645px height=367px allowfullscreen></iframe>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <center>
+    <h1>Abstract</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    In this paper, we present a detailed design of dynamic video segmentation network (<b>DVSNet</b>) for fast and efficient video semantic segmentation. DVSNet consists of two convolutional neural networks: <b>a segmentation network</b> and <b>a flow network</b>. The former generates highly accurate semantic segmentations, but is deeper and slower. The latter is much faster than the former, but its output requires further processing to generate less accurate semantic segmentations. We explore the use of a <b>decision network to adaptively assign different frame regions to different networks</b> based on a metric called expected confidence score. Frame regions with a higher expected confidence score traverse the flow network. Frame regions with a lower expected confidence score have to pass through the segmentation net- work. We have extensively performed experiments on various configurations of DVSNet, and investigated a number of variants for the proposed decision network. The experimental results show that our DVSNet is able to achieve up to <b>70.4% mIoU</b> at <b>19.8 fps</b> on the <b>Cityscape</b> dataset. A high speed version of DVSNet is able to deliver an <b>fps of 30.4</b> with <b>63.2% mIoU</b> on the same dataset. DVSNet is also able to <b>reduce up to 95% of the computational workloads</b>.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Overview</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/overview.jpg" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    The DVSNet framework consists of <b>3 major steps</b>. The first step in the DVSNet framework is <b>dividing the input frames into frame regions</b>. We assume that <b>I<sub>k</sub> represents the key frame</b>, <b>I<sub>i</sub> represents the current frame</b>, and the number of the frame regions equals 4. In step 2, <b>DN analyzes the frame region pairs between I<sub>k</sub> and I<sub>i</sub></b>, and evaluates the <b>expected confidence scores</b> for the 4 regions separately. DN <b>compares the expected confidence score of each region against a predetermined threshold</b>. If the expected confidence score of a region is lower than the threshold, the corresponding region is sent to a segmentation path. Otherwise, it is forwarded to a spatial warping path, which includes the flow network. Based on the decisions of DN, in step 3, <b>frame regions are forwarded to different paths to generate their regional semantic segmentations</b>. For the spatial warping path, a <b>special warping function W</b> is employed to process the the output of the flow network F with the segmentation S<sub>k</sub> from the same region of the key frame to generate a new segmentation O<sub>c</sub> for that region.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Decision Network</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/dn.jpg" width=800px /></center>
+  </table>
+  <br>
+  <div style="width: 750px; margin: 0 auto; text-align=center; text-align: justify; text-justify: inter-ideograph;">
+    Decision network (DN) is a <b>lightweight CNN</b> consists of only a single convolutional layer and 3 fullyconnected layers. DN <b>takes as input the feature maps from one of the intermediate layers of the flow network</b>, and be trained to perform regression. In the training phase, the goal of DN is to learn to <b>predict an expected confidence score for a frame region</b> as close to the ground truth confidence score as possible. The predicted expected confidence score is compared with the ground truth confidence score to <b>calculate a mean squared error (MSE) loss</b>. In the inference phase, the ground truth confidence score is not accessible to both DN and the flow network. The feature maps fed into DN <b>is allowed to come from any of the layers</b> of the flow networks. These feature maps represent the spatial transfer information between a key frame region and its corresponding current frame region.
+  </div>
+
+  <br><hr>
+
+  <center>
+    <h1>Experimental Result</h1>
+  </center>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/exp-1.jpg" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/exp-2.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/exp-3.png" width=600px /></center>
+  </table>
+  <br>
+  <table align=center width=800px>
+    <center><img src = "cvpr18_dvsnet/exp-4.png" width=600px /></center>
+  </table>
+
+  <br><hr>
+
+  <center>
+    <h1>Citation</h1>
+  </center>
+  <div style="width: 750px; margin: 0 auto; text-align: justify; text-justify: inter-ideograph;">
+    @inproceedings{xu2018dvsnet, <br>
+      &emsp; author = {Yu-Shuan Xu and Tsu-Jui Fu and Hsuan-Kung Yang and Chun-Yi Lee}, <br>
+      &emsp; title = {Dynamic Video Segmentation Network}, <br>
+      &emsp; booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, <br>
+      &emsp; year = {2018} <br>
+    }
+  </div>
+
+  <br>
+
+  <center>
+    template from <a href="https://pathak22.github.io/zeroshot-imitation/" target="_blank">pathak22</a>
+  </center>
+
+  <br>
+
+</body>
+
+</html>
