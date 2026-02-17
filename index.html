@@ -13,8 +13,8 @@
   <script>
     function pressBtn(p) {
 
-      var id_btn=["exp-btn", "pub-btn"], class_btn=["fas fa-plus-square", "fas fa-minus-square"];
-      var id_div=["exp-div", "pub-div"], style_div=["height: 300px; overflow: auto;", "height: 400px; overflow: auto;"];
+      var id_btn=["exp-btn"], class_btn=["fas fa-plus-square", "fas fa-minus-square"];
+      var id_div=["exp-div"], style_div=["height: 300px; overflow: auto;"];
 
       var btn = document.getElementById(id_btn[p]);
       if(btn.className == class_btn[0]) {
@@ -32,6 +32,19 @@
     }
     function img_unhover(e, f) {
       e.setAttribute("src", f);
+    }
+
+    function showTab(tabId) {
+      var tabs = ['tab-fm', 'tab-science', 'tab-fundamental'];
+      var btns = ['btn-fm', 'btn-science', 'btn-fundamental'];
+      for (var i = 0; i < tabs.length; i++) {
+        document.getElementById(tabs[i]).style.display = 'none';
+        document.getElementById(btns[i]).style.borderBottom = '2px solid transparent';
+        document.getElementById(btns[i]).style.color = '#666';
+      }
+      document.getElementById('tab-' + tabId).style.display = 'block';
+      document.getElementById('btn-' + tabId).style.borderBottom = '2px solid #527bbd';
+      document.getElementById('btn-' + tabId).style.color = '#527bbd';
     }
   </script>
 </head>
@@ -326,345 +339,341 @@
           <tr>
             <td class="all">
               <heading>
-                <i class="far fa-file-alt"></i>&nbsp;&nbsp;Selected Publications<i class="fas fa-plus-square" style="float: right;" onclick="pressBtn(1)" id="pub-btn"></i>
+                <i class="far fa-file-alt"></i>&nbsp;&nbsp;Selected Publications
               </heading>
             </td>
           </tr>
         </tbody></table>
         <br>
-        <div id="pub-div">
+        <div>
+          <!-- Tab buttons -->
+          <div style="margin-bottom: 15px; border-bottom: 1px solid #ddd;">
+            <span id="btn-fm" onclick="showTab('fm')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid #527bbd; color: #527bbd; font-weight: bold;">RL for Foundation Models</span>
+            <span id="btn-science" onclick="showTab('science')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; color: #666; font-weight: bold;">Applications on Science</span>
+            <span id="btn-fundamental" onclick="showTab('fundamental')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; color: #666; font-weight: bold;">Fundamental RL</span>
+          </div>
 
-          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-
-            <!-- Column 1: RL for Foundation Models -->
-            <div style="flex: 1; min-width: 280px;">
-              <h3 style="margin-bottom: 10px; color: #527bbd;">RL for Foundation Models</h3>
-
-              <div class="pub-item">
-                <papertitle>RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning</papertitle>
-                <br>
-                <I>Kaiwen Zha, Zhengqi Gao, Maohao Shen, <b>Zhang-Wei Hong</b>, Duane S. Boning, Dina Katabi</I>
-                <br>
-                NeurIPS, 2025
-                <br>
-                <a href="https://arxiv.org/abs/2505.15034">Paper</a> |
-                <a href="https://github.com/kaiwenzha/rl-tango">Code</a>
-              </div>
+          <!-- Tab 1: RL for Foundation Models -->
+          <div id="tab-fm" style="display: block;">
+            <div class="pub-item">
+              <papertitle>RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning</papertitle>
               <br>
-
-              <div class="pub-item">
-                <papertitle>BOAD: Discovering Hierarchical Software Engineering Agents via Bandit Optimization</papertitle>
-                <br>
-                <I>Iris Xu, Guangtao Zeng, Zexue He, Charles Jin, Aldo Pareja, Dan Gutfreund, Chuang Gan, <b>Zhang-Wei Hong</b></I>
-                <br>
-                ICLR, 2026
-                <br>
-                <a href="https://arxiv.org/abs/2512.23631">Paper</a> |
-                <a href="https://github.com/iamxjy/BOAD-SWE-Agent">Code</a>
-              </div>
+              <I>Kaiwen Zha, Zhengqi Gao, Maohao Shen, <b>Zhang-Wei Hong</b>, Duane S. Boning, Dina Katabi</I>
               <br>
-
-              <div class="pub-item">
-                <papertitle>Satori: Reinforcement Learning with Chain-of-Action-Thought Enhances LLM Reasoning via Autoregressive Search</papertitle>
-                <br>
-                <I>Maohao Shen, Guangtao Zeng, Zhenting Qi, <b>Zhang-Wei Hong</b>, Zhenfang Chen, Wei Lu, Gregory Wornell, Subhro Das, David Cox, Chuang Gan</I>
-                <br>
-                arXiv, 2025
-                <br>
-                <a href="https://arxiv.org/abs/2502.02508">Paper</a> |
-                <a href="https://github.com/satori-reasoning/Satori">Code</a>
-              </div>
+              NeurIPS, 2025
               <br>
-
-              <div class="pub-item">
-                <papertitle>Red Teaming Language-Conditioned Robot Models via Vision Language Models</papertitle>
-                <br>
-                <I>Sathwik Karnik*, <b>Zhang-Wei Hong*</b>, Nishant Abhangi*, Yen-Chen Lin, Tsun-Hsuan Wang, Pulkit Agrawal</I>
-                <br>
-                NeurIPS Safe Generative AI Workshop, 2024
-                <br>
-                <a href="https://openreview.net/pdf?id=cSAMf9czc4">Paper</a> | <a href="bibtex/karnik2024red.bib">Bibtex</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Curiosity-driven Red-teaming for Large Language Models</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Idan Shenfeld, Tsun-Hsuan Wang, Yung-Sung Chuang, Aldo Pareja, James R. Glass, Akash Srivastava, Pulkit Agrawal</I>
-                <br>
-                ICLR, 2024 &nbsp;|&nbsp; <a href="https://news.mit.edu/2024/faster-better-way-preventing-ai-chatbot-toxic-responses-0410" target="_blank">MIT News</a>
-                <br>
-                <a href="https://arxiv.org/pdf/2402.19464.pdf" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/curiosity_redteam" target="_blank">Code</a> |
-                <a href="bibtex/hong2024curiosity.bib" target="_blank">Bibtex</a>
-              </div>
+              <a href="https://arxiv.org/abs/2505.15034">Paper</a> |
+              <a href="https://github.com/kaiwenzha/rl-tango">Code</a>
             </div>
+            <br>
 
-            <!-- Column 2: Applications on Science -->
-            <div style="flex: 1; min-width: 280px;">
-              <h3 style="margin-bottom: 10px; color: #527bbd;">Applications on Science</h3>
-
-              <div class="pub-item">
-                <papertitle>A Multimodal Robotic Platform for Multi-Element Electrocatalyst Discovery</papertitle>
-                <br>
-                <I>Zhen Zhang, Zhichu Ren, Chia-Wei Hsu, Weibin Chen, <b>Zhang-Wei Hong</b>, Chi-Feng Lee, Aubrey Penn, Hongbin Xu, Daniel J Zheng, Shuhan Miao, Yimeng Huang, Yifan Gao, Weiyin Chen, Hugh Smith, Yaoshen Niu, Yunsheng Tian, Ying-Rui Lu, Yu-Cheng Shao, Sipei Li, Hsiao-Tsu Wang, Iwnetim I Abate, Pulkit Agrawal, Yang Shao-Horn, Ju Li</I>
-                <br>
-                Nature, 2025
-                <br>
-                <a href="https://www.nature.com/articles/s41586-025-08904-y">Paper</a>
-              </div>
+            <div class="pub-item">
+              <papertitle>BOAD: Discovering Hierarchical Software Engineering Agents via Bandit Optimization</papertitle>
               <br>
-
-              <div class="pub-item">
-                <papertitle>A Distributional Reinforcement Learning Model for Optimal Glucose Control After Cardiac Surgery</papertitle>
-                <br>
-                <I>Jacob M Desman, <b>Zhang-Wei Hong</b>, Moein Sabounchi, Ashwin S Sawant, Jaskirat Gill, Ana C Costa, Gagan Kumar, Rajeev Sharma, Arpeta Gupta, Paul McCarthy, Veena Nandwani, Doug Powell, Alexandra Carideo, Donnie Goodwin, Sanam Ahmed, Umesh Gidwani, Matthew A Levin, Robin Varghese, Farzan Filsoufi, Robert Freeman, Avniel Shetreat-Klein, Alexander W Charney, Ira Hofer, Lili Chan, David Reich, Patricia Kovatch, Roopa Kohli-Seth, Monica Kraft, Pulkit Agrawal, John A Kellum, Girish N Nadkarni, Ankit Sakhuja</I>
-                <br>
-                npj Digital Medicine, 2025
-                <br>
-                <a href="https://www.nature.com/articles/s41746-025-01612-z">Paper</a>
-              </div>
+              <I>Iris Xu, Guangtao Zeng, Zexue He, Charles Jin, Aldo Pareja, Dan Gutfreund, Chuang Gan, <b>Zhang-Wei Hong</b></I>
               <br>
-
-              <div class="pub-item">
-                <papertitle>Towards Generating Stable Materials via Large Language Models with Reinforcement Learning Finetuning</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong*</b>, Nofit Segal*, Aviv Netanyahu, Hoje Chun, Rafael Gomez-Bombarelli, Pulkit Agrawal</I>
-                <br>
-                NeurIPS AI4Science Workshop, 2025
-                <br>
-                <a href="https://openreview.net/forum?id=Hkr2OfTjAc">Paper</a>
-              </div>
+              ICLR, 2026
               <br>
-
-              <div class="pub-item">
-                <papertitle>Maximizing Velocity by Minimizing Energy</papertitle>
-                <br>
-                <I>Srinath Mahankali*, Chi-Chang Lee*, Gabriel B. Margolis, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
-                <br>
-                ICRA, 2024
-                <br>
-                <a href="" target="_blank">Paper (coming soon)</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Stubborn: A Strong Baseline for Indoor Object Navigation</papertitle>
-                <br>
-                <I>Haokuan Luo, Albert Yue, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
-                <br>
-                IROS, 2022
-                <br>
-                <a href="https://arxiv.org/pdf/2203.07359.pdf" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/Stubborn" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Virtual-to-Real: Learning to Control in Visual Semantic Segmentation</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Yu-Ming Chen, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, Hsuan-Kung Yang, Brian Hsi-Lin Ho, Chih-Chieh Tu, Yueh-Chuan Chang, Tsu-Ching Hsiao, Hsin-Wei Hsiao, Sih-Pin Lai, Chun-Yi Lee</I>
-                <br>
-                IJCAI, 2018 (Oral)
-                <br>
-                <a href="pubs/ijcai2018_v2r.pdf" target="_blank">Paper</a> |
-                <a href="https://hellochick.github.io/projects/Sim-to-Real" target="_blank">Project</a>
-              </div>
+              <a href="https://arxiv.org/abs/2512.23631">Paper</a> |
+              <a href="https://github.com/iamxjy/BOAD-SWE-Agent">Code</a>
             </div>
+            <br>
 
-            <!-- Column 3: Fundamental RL -->
-            <div style="flex: 1; min-width: 280px;">
-              <h3 style="margin-bottom: 10px; color: #527bbd;">Fundamental RL</h3>
-
-              <div class="pub-item">
-                <papertitle>Tailored Primitive Initialization is the Secret Key to Reinforcement Learning</papertitle>
-                <br>
-                <I>Yihang Yao, Guangtao Zeng, Raina Wu, Yang Zhang, Ding Zhao, <b>Zhang-Wei Hong</b>, Chuang Gan</I>
-                <br>
-                arXiv, 2025
-                <br>
-                <a href="https://arxiv.org/abs/2511.12429">Paper</a>
-              </div>
+            <div class="pub-item">
+              <papertitle>Satori: Reinforcement Learning with Chain-of-Action-Thought Enhances LLM Reasoning via Autoregressive Search</papertitle>
               <br>
-
-              <div class="pub-item">
-                <papertitle>Going Beyond Heuristics by Imposing Policy Improvement as a Constraint</papertitle>
-                <br>
-                <I>Chi-Chang Lee, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
-                <br>
-                NeurIPS, 2024
-                <br>
-                <a href="https://openreview.net/pdf?id=vBGMbFgvsX">Paper</a> | <a href="https://github.com/Improbable-AI/hepo">Code</a> | <a href="bibtex/lee2024going.bib">Bibtex</a>
-              </div>
+              <I>Maohao Shen, Guangtao Zeng, Zhenting Qi, <b>Zhang-Wei Hong</b>, Zhenfang Chen, Wei Lu, Gregory Wornell, Subhro Das, David Cox, Chuang Gan</I>
               <br>
-
-              <div class="pub-item">
-                <papertitle>Random Latent Exploration for Deep Reinforcement Learning</papertitle>
-                <br>
-                <I>Srinath Mahankali, <b>Zhang-Wei Hong</b>, Ayush Sekhari, Alexander Rakhlin, Pulkit Agrawal</I>
-                <br>
-                ICML, 2024
-                <br>
-                <a href="https://srinathm1359.github.io/random-latent-exploration/">Website</a> |
-                <a href="https://arxiv.org/pdf/2407.13755">Paper</a>
-              </div>
+              ICML, 2025
               <br>
-
-              <div class="pub-item">
-                <papertitle>Beyond Uniform Sampling: Offline Reinforcement Learning with Imbalanced Datasets</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Aviral Kumar, Sathwik Karnik, Abhishek Bhandwaldar, Akash Srivastava, Joni Pajarinen, Romain Laroche, Abhishek Gupta, Pulkit Agrawal</I>
-                <br>
-                NeurIPS, 2023
-                <br>
-                <a href="https://arxiv.org/pdf/2310.04413.pdf" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/dw-offline-rl" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>TGRL: An Algorithm for Teacher Guided Reinforcement Learning</papertitle>
-                <br>
-                <I>Idan Shenfeld, <b>Zhang-Wei Hong</b>, Aviv Tamar, Pulkit Agrawal</I>
-                <br>
-                ICML, 2023
-                <br>
-                <a href="https://openreview.net/forum?id=Hk3m8Nh7mn" target="_blank">Paper</a> |
-                <a href="https://sites.google.com/view/tgrl-paper/home" target="_blank">Website</a> |
-                <a href="https://github.com/idanshen/cleanrl/blob/master/cleanrl/tgrl_continuous_action.py" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Parallel Q-Learning: Scaling Off-policy Reinforcement Learning under Massively Parallel Simulation</papertitle>
-                <br>
-                <I>Zechu Li*, Tao Chen*, <b>Zhang-Wei Hong</b>, Anurag Ajay, Pulkit Agrawal</I>
-                <br>
-                ICML, 2023
-                <br>
-                <a href="https://arxiv.org/abs/2307.12983" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/pql" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Harnessing Mixed Offline Reinforcement Learning Datasets via Trajectory Reweighting</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Pulkit Agrawal, Remi Tachet des Combes, Romain Laroche</I>
-                <br>
-                ICLR, 2023
-                <br>
-                <a href="https://openreview.net/pdf?id=OhUAblg27z" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/harness-offline-rl" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Redeeming Intrinsic Rewards via Constrained Optimization</papertitle>
-                <br>
-                <I>Eric Chen*, <b>Zhang-Wei Hong*</b>, Joni Pajarinen, Pulkit Agrawal</I> (* indicates equal contribution)
-                <br>
-                NeurIPS, 2022 &nbsp;|&nbsp; <a href="https://news.mit.edu/2022/ensuring-ai-works-with-right-dose-curiosity-1110" target="_blank">MIT News</a>
-                <br>
-                <a href="pubs/neurips22_eipo.pdf" target="_blank">Paper</a> |
-                <a href="https://sites.google.com/view/neurips22-eipo/" target="_blank">Website</a> |
-                <a href="https://github.com/Improbable-AI/eipo" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Bilinear Value Networks for Multi-goal Reinforcement Learning</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong*</b>, Ge Yang*, Pulkit Agrawal</I> (* indicates equal contribution)
-                <br>
-                ICLR, 2022
-                <br>
-                <a href="https://openreview.net/forum?id=LedObtLmCjS" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/bvn" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Topological Experience Replay</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Tao Chen, Yen-Chen Lin, Joni Pajarinen, Pulkit Agrawal</I>
-                <br>
-                ICLR, 2022
-                <br>
-                <a href="https://openreview.net/forum?id=OXRZeMmOI7a" target="_blank">Paper</a> |
-                <a href="https://github.com/Improbable-AI/ter" target="_blank">Code</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Reducing the Deployment-Time Inference Control Costs of Deep Reinforcement Learning Agents via an Asymmetric Architecture</papertitle>
-                <br>
-                <I>Chin-Jui Chang, Yu-Wei Chu, Chao-Hsien Ting, Hao-Kang Liu, <b>Zhang-Wei Hong</b>, Chun-Yi Lee</I>
-                <br>
-                ICRA, 2021
-                <br>
-                <a href="pubs/icra2021.pdf" target="_blank">Paper</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Periodic Intra-Ensemble Knowledge Distillation for Reinforcement Learning</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Prabhat Nagarajan, Guilherme Maeda</I>
-                <br>
-                ECML, 2021
-                <br>
-                <a href="pubs/ecml2021.pdf" target="_blank">Paper</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Adversarial Active Exploration for Inverse Dynamics Model Learning</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Tsu-Jui Fu, Tzu-Yun Shann, Yi-Hsiang Chang, Chun-Yi Lee</I>
-                <br>
-                CoRL, 2019 (Oral)
-                <br>
-                <a href="pubs/corl19_self-adv.pdf" target="_blank">Paper</a> |
-                <a href="projs/corl19_self-adv.html" target="_blank">Project</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Tzu-Yun Shann, Shih-Yang Su, Yi-Hsiang Chang, Tsu-Jui Fu, Chun-Yi Lee</I>
-                <br>
-                NeurIPS, 2018
-                <br>
-                <a href="pubs/nips18_div-driven.pdf" target="_blank">Paper</a> |
-                <a href="projs/nips18_div-driven.html" target="_blank">Project</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Deep Policy Inference Q-Network for Multi-Agent Systems</papertitle>
-                <br>
-                <I><b>Zhang-Wei Hong</b>, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, Chun-Yi Lee</I>
-                <br>
-                AAMAS, 2018 (Oral)
-                <br>
-                <a href="pubs/aamas2018_dpiqn.pdf" target="_blank">Paper</a>
-              </div>
-              <br>
-
-              <div class="pub-item">
-                <papertitle>Tactics of Adversarial Attack on Deep Reinforcement Learning Agents</papertitle>
-                <br>
-                <I>Yen-Chen Lin, <b>Zhang-Wei Hong</b>, Yuan-Hong Liao, Meng-Li Shih, Ming-Yu Liu, Min Sun</I>
-                <br>
-                IJCAI, 2017
-                <br>
-                <a href="pubs/ijcai2017_adv.pdf" target="_blank">Paper</a> |
-                <a href="https://yenchenlin.me/adversarial_attack_RL/" target="_blank">Project</a>
-              </div>
+              <a href="https://arxiv.org/abs/2502.02508">Paper</a> |
+              <a href="https://github.com/satori-reasoning/Satori">Code</a>
             </div>
+            <br>
 
+            <div class="pub-item">
+              <papertitle>Red Teaming Language-Conditioned Robot Models via Vision Language Models</papertitle>
+              <br>
+              <I>Sathwik Karnik*, <b>Zhang-Wei Hong*</b>, Nishant Abhangi*, Yen-Chen Lin, Tsun-Hsuan Wang, Pulkit Agrawal</I>
+              <br>
+              NeurIPS Safe Generative AI Workshop, 2024
+              <br>
+              <a href="https://openreview.net/pdf?id=cSAMf9czc4">Paper</a> | <a href="bibtex/karnik2024red.bib">Bibtex</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Curiosity-driven Red-teaming for Large Language Models</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Idan Shenfeld, Tsun-Hsuan Wang, Yung-Sung Chuang, Aldo Pareja, James R. Glass, Akash Srivastava, Pulkit Agrawal</I>
+              <br>
+              ICLR, 2024 &nbsp;|&nbsp; <a href="https://news.mit.edu/2024/faster-better-way-preventing-ai-chatbot-toxic-responses-0410" target="_blank">MIT News</a>
+              <br>
+              <a href="https://arxiv.org/pdf/2402.19464.pdf" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/curiosity_redteam" target="_blank">Code</a> |
+              <a href="bibtex/hong2024curiosity.bib" target="_blank">Bibtex</a>
+            </div>
+          </div>
+
+          <!-- Tab 2: Applications on Science -->
+          <div id="tab-science" style="display: none;">
+            <div class="pub-item">
+              <papertitle>A Multimodal Robotic Platform for Multi-Element Electrocatalyst Discovery</papertitle>
+              <br>
+              <I>Zhen Zhang, Zhichu Ren, Chia-Wei Hsu, Weibin Chen, <b>Zhang-Wei Hong</b>, Chi-Feng Lee, Aubrey Penn, Hongbin Xu, Daniel J Zheng, Shuhan Miao, Yimeng Huang, Yifan Gao, Weiyin Chen, Hugh Smith, Yaoshen Niu, Yunsheng Tian, Ying-Rui Lu, Yu-Cheng Shao, Sipei Li, Hsiao-Tsu Wang, Iwnetim I Abate, Pulkit Agrawal, Yang Shao-Horn, Ju Li</I>
+              <br>
+              Nature, 2025
+              <br>
+              <a href="https://www.nature.com/articles/s41586-025-08904-y">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>A Distributional Reinforcement Learning Model for Optimal Glucose Control After Cardiac Surgery</papertitle>
+              <br>
+              <I>Jacob M Desman, <b>Zhang-Wei Hong</b>, Moein Sabounchi, Ashwin S Sawant, Jaskirat Gill, Ana C Costa, Gagan Kumar, Rajeev Sharma, Arpeta Gupta, Paul McCarthy, Veena Nandwani, Doug Powell, Alexandra Carideo, Donnie Goodwin, Sanam Ahmed, Umesh Gidwani, Matthew A Levin, Robin Varghese, Farzan Filsoufi, Robert Freeman, Avniel Shetreat-Klein, Alexander W Charney, Ira Hofer, Lili Chan, David Reich, Patricia Kovatch, Roopa Kohli-Seth, Monica Kraft, Pulkit Agrawal, John A Kellum, Girish N Nadkarni, Ankit Sakhuja</I>
+              <br>
+              npj Digital Medicine, 2025
+              <br>
+              <a href="https://www.nature.com/articles/s41746-025-01612-z">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Towards Generating Stable Materials via Large Language Models with Reinforcement Learning Finetuning</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong*</b>, Nofit Segal*, Aviv Netanyahu, Hoje Chun, Rafael Gomez-Bombarelli, Pulkit Agrawal</I>
+              <br>
+              NeurIPS AI4Science Workshop, 2025
+              <br>
+              <a href="https://openreview.net/forum?id=Hkr2OfTjAc">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Maximizing Velocity by Minimizing Energy</papertitle>
+              <br>
+              <I>Srinath Mahankali*, Chi-Chang Lee*, Gabriel B. Margolis, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
+              <br>
+              ICRA, 2024
+              <br>
+              <a href="" target="_blank">Paper (coming soon)</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Stubborn: A Strong Baseline for Indoor Object Navigation</papertitle>
+              <br>
+              <I>Haokuan Luo, Albert Yue, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
+              <br>
+              IROS, 2022
+              <br>
+              <a href="https://arxiv.org/pdf/2203.07359.pdf" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/Stubborn" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Virtual-to-Real: Learning to Control in Visual Semantic Segmentation</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Yu-Ming Chen, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, Hsuan-Kung Yang, Brian Hsi-Lin Ho, Chih-Chieh Tu, Yueh-Chuan Chang, Tsu-Ching Hsiao, Hsin-Wei Hsiao, Sih-Pin Lai, Chun-Yi Lee</I>
+              <br>
+              IJCAI, 2018 (Oral)
+              <br>
+              <a href="pubs/ijcai2018_v2r.pdf" target="_blank">Paper</a> |
+              <a href="https://hellochick.github.io/projects/Sim-to-Real" target="_blank">Project</a>
+            </div>
+          </div>
+
+          <!-- Tab 3: Fundamental RL -->
+          <div id="tab-fundamental" style="display: none;">
+            <div class="pub-item">
+              <papertitle>Tailored Primitive Initialization is the Secret Key to Reinforcement Learning</papertitle>
+              <br>
+              <I>Yihang Yao, Guangtao Zeng, Raina Wu, Yang Zhang, Ding Zhao, <b>Zhang-Wei Hong</b>, Chuang Gan</I>
+              <br>
+              arXiv, 2025
+              <br>
+              <a href="https://arxiv.org/abs/2511.12429">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Going Beyond Heuristics by Imposing Policy Improvement as a Constraint</papertitle>
+              <br>
+              <I>Chi-Chang Lee, <b>Zhang-Wei Hong</b>, Pulkit Agrawal</I>
+              <br>
+              NeurIPS, 2024
+              <br>
+              <a href="https://openreview.net/pdf?id=vBGMbFgvsX">Paper</a> | <a href="https://github.com/Improbable-AI/hepo">Code</a> | <a href="bibtex/lee2024going.bib">Bibtex</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Random Latent Exploration for Deep Reinforcement Learning</papertitle>
+              <br>
+              <I>Srinath Mahankali, <b>Zhang-Wei Hong</b>, Ayush Sekhari, Alexander Rakhlin, Pulkit Agrawal</I>
+              <br>
+              ICML, 2024
+              <br>
+              <a href="https://srinathm1359.github.io/random-latent-exploration/">Website</a> |
+              <a href="https://arxiv.org/pdf/2407.13755">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Beyond Uniform Sampling: Offline Reinforcement Learning with Imbalanced Datasets</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Aviral Kumar, Sathwik Karnik, Abhishek Bhandwaldar, Akash Srivastava, Joni Pajarinen, Romain Laroche, Abhishek Gupta, Pulkit Agrawal</I>
+              <br>
+              NeurIPS, 2023
+              <br>
+              <a href="https://arxiv.org/pdf/2310.04413.pdf" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/dw-offline-rl" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>TGRL: An Algorithm for Teacher Guided Reinforcement Learning</papertitle>
+              <br>
+              <I>Idan Shenfeld, <b>Zhang-Wei Hong</b>, Aviv Tamar, Pulkit Agrawal</I>
+              <br>
+              ICML, 2023
+              <br>
+              <a href="https://openreview.net/forum?id=Hk3m8Nh7mn" target="_blank">Paper</a> |
+              <a href="https://sites.google.com/view/tgrl-paper/home" target="_blank">Website</a> |
+              <a href="https://github.com/idanshen/cleanrl/blob/master/cleanrl/tgrl_continuous_action.py" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Parallel Q-Learning: Scaling Off-policy Reinforcement Learning under Massively Parallel Simulation</papertitle>
+              <br>
+              <I>Zechu Li*, Tao Chen*, <b>Zhang-Wei Hong</b>, Anurag Ajay, Pulkit Agrawal</I>
+              <br>
+              ICML, 2023
+              <br>
+              <a href="https://arxiv.org/abs/2307.12983" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/pql" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Harnessing Mixed Offline Reinforcement Learning Datasets via Trajectory Reweighting</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Pulkit Agrawal, Remi Tachet des Combes, Romain Laroche</I>
+              <br>
+              ICLR, 2023
+              <br>
+              <a href="https://openreview.net/pdf?id=OhUAblg27z" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/harness-offline-rl" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Redeeming Intrinsic Rewards via Constrained Optimization</papertitle>
+              <br>
+              <I>Eric Chen*, <b>Zhang-Wei Hong*</b>, Joni Pajarinen, Pulkit Agrawal</I> (* indicates equal contribution)
+              <br>
+              NeurIPS, 2022 &nbsp;|&nbsp; <a href="https://news.mit.edu/2022/ensuring-ai-works-with-right-dose-curiosity-1110" target="_blank">MIT News</a>
+              <br>
+              <a href="pubs/neurips22_eipo.pdf" target="_blank">Paper</a> |
+              <a href="https://sites.google.com/view/neurips22-eipo/" target="_blank">Website</a> |
+              <a href="https://github.com/Improbable-AI/eipo" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Bilinear Value Networks for Multi-goal Reinforcement Learning</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong*</b>, Ge Yang*, Pulkit Agrawal</I> (* indicates equal contribution)
+              <br>
+              ICLR, 2022
+              <br>
+              <a href="https://openreview.net/forum?id=LedObtLmCjS" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/bvn" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Topological Experience Replay</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Tao Chen, Yen-Chen Lin, Joni Pajarinen, Pulkit Agrawal</I>
+              <br>
+              ICLR, 2022
+              <br>
+              <a href="https://openreview.net/forum?id=OXRZeMmOI7a" target="_blank">Paper</a> |
+              <a href="https://github.com/Improbable-AI/ter" target="_blank">Code</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Reducing the Deployment-Time Inference Control Costs of Deep Reinforcement Learning Agents via an Asymmetric Architecture</papertitle>
+              <br>
+              <I>Chin-Jui Chang, Yu-Wei Chu, Chao-Hsien Ting, Hao-Kang Liu, <b>Zhang-Wei Hong</b>, Chun-Yi Lee</I>
+              <br>
+              ICRA, 2021
+              <br>
+              <a href="pubs/icra2021.pdf" target="_blank">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Periodic Intra-Ensemble Knowledge Distillation for Reinforcement Learning</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Prabhat Nagarajan, Guilherme Maeda</I>
+              <br>
+              ECML, 2021
+              <br>
+              <a href="pubs/ecml2021.pdf" target="_blank">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Adversarial Active Exploration for Inverse Dynamics Model Learning</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Tsu-Jui Fu, Tzu-Yun Shann, Yi-Hsiang Chang, Chun-Yi Lee</I>
+              <br>
+              CoRL, 2019 (Oral)
+              <br>
+              <a href="pubs/corl19_self-adv.pdf" target="_blank">Paper</a> |
+              <a href="projs/corl19_self-adv.html" target="_blank">Project</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Diversity-Driven Exploration Strategy for Deep Reinforcement Learning</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Tzu-Yun Shann, Shih-Yang Su, Yi-Hsiang Chang, Tsu-Jui Fu, Chun-Yi Lee</I>
+              <br>
+              NeurIPS, 2018
+              <br>
+              <a href="pubs/nips18_div-driven.pdf" target="_blank">Paper</a> |
+              <a href="projs/nips18_div-driven.html" target="_blank">Project</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Deep Policy Inference Q-Network for Multi-Agent Systems</papertitle>
+              <br>
+              <I><b>Zhang-Wei Hong</b>, Shih-Yang Su, Tzu-Yun Shann, Yi-Hsiang Chang, Chun-Yi Lee</I>
+              <br>
+              AAMAS, 2018 (Oral)
+              <br>
+              <a href="pubs/aamas2018_dpiqn.pdf" target="_blank">Paper</a>
+            </div>
+            <br>
+
+            <div class="pub-item">
+              <papertitle>Tactics of Adversarial Attack on Deep Reinforcement Learning Agents</papertitle>
+              <br>
+              <I>Yen-Chen Lin, <b>Zhang-Wei Hong</b>, Yuan-Hong Liao, Meng-Li Shih, Ming-Yu Liu, Min Sun</I>
+              <br>
+              IJCAI, 2017
+              <br>
+              <a href="pubs/ijcai2017_adv.pdf" target="_blank">Paper</a> |
+              <a href="https://yenchenlin.me/adversarial_attack_RL/" target="_blank">Project</a>
+            </div>
           </div>
 
 
