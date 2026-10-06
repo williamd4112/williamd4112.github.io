@@ -160,6 +160,35 @@ td.exp-description {
   font-size: 14px;
   margin-top: 2px;
 }
+.proj-card {
+  padding: 14px 18px;
+  border: 1px solid #ececec;
+  border-left: 3px solid #527bbd;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+.proj-card:hover {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+  transform: translateY(-1px);
+  border-left-color: #f09228;
+}
+.proj-title {
+  font-weight: 700;
+  color: #222;
+  line-height: 1.4;
+}
+.proj-meta {
+  color: #555;
+  margin-top: 3px;
+}
+.proj-desc {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
 .mentor-card {
   flex: 1 1 240px;
   min-width: 220px;
