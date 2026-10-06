@@ -136,6 +136,33 @@ td.exp-description {
   margin-top: 4px;
 }
 
+.pub-item {
+  padding: 14px 18px;
+  margin-bottom: 0;
+  border: 1px solid #ececec;
+  border-left: 3px solid #527bbd;
+  border-radius: 8px;
+  background: #fafafa;
+  line-height: 1.5;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+.pub-item:hover {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+  transform: translateY(-1px);
+  border-left-color: #f09228;
+}
+.pub-item papertitle {
+  color: #222;
+  font-size: 16.5px;
+  line-height: 1.4;
+}
+.pub-item I {
+  color: #555;
+}
+.pub-item a {
+  font-weight: 600;
+}
+
 td.pub-avatar {
   width: 30%;
 }
