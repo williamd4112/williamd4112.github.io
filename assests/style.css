@@ -112,6 +112,54 @@ td.exp-avatar {
 td.exp-description {
   width: 80%;
 }
+.exp-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.exp-entry:last-child {
+  border-bottom: none;
+}
+.exp-logo {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  background: #fff;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.exp-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.exp-role {
+  font-weight: 700;
+}
+.exp-date {
+  color: #888;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.exp-org {
+  margin-top: 2px;
+}
+.exp-advisor {
+  color: #666;
+  font-size: 14px;
+  margin-top: 2px;
+}
 .mentor-card {
   flex: 1 1 240px;
   min-width: 220px;
