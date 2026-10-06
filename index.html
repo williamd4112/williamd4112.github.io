@@ -39,12 +39,10 @@
       var btns = ['btn-fm', 'btn-science', 'btn-fundamental'];
       for (var i = 0; i < tabs.length; i++) {
         document.getElementById(tabs[i]).style.display = 'none';
-        document.getElementById(btns[i]).style.borderBottom = '2px solid transparent';
-        document.getElementById(btns[i]).style.color = '#666';
+        document.getElementById(btns[i]).className = 'pub-tab';
       }
       document.getElementById('tab-' + tabId).style.display = 'block';
-      document.getElementById('btn-' + tabId).style.borderBottom = '2px solid #527bbd';
-      document.getElementById('btn-' + tabId).style.color = '#527bbd';
+      document.getElementById('btn-' + tabId).className = 'pub-tab active';
     }
   </script>
 </head>
@@ -106,8 +104,12 @@
           <tr>
             <td class="all">
               <br>
-              <a href="https://www.qualcomm.com/research/university-relations/innovation-fellowship/2024-north-america/" target="_blank">Qualcomm Innovation Fellowship</a>, North America
-              <span style="float: right;">2024</span>
+              <div class="list-stack">
+                <div class="list-card">
+                  <span><a href="https://www.qualcomm.com/research/university-relations/innovation-fellowship/2024-north-america/" target="_blank">Qualcomm Innovation Fellowship</a>, North America</span>
+                  <span class="list-date">2024</span>
+                </div>
+              </div>
             </td>
           </tr>
       </tbody></table>
@@ -399,10 +401,10 @@
         <br>
         <div>
           <!-- Tab buttons -->
-          <div style="margin-bottom: 15px; border-bottom: 1px solid #ddd;">
-            <span id="btn-fm" onclick="showTab('fm')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid #527bbd; color: #527bbd; font-weight: bold;">RL for Foundation Models</span>
-            <span id="btn-science" onclick="showTab('science')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; color: #666; font-weight: bold;">Applications on Science</span>
-            <span id="btn-fundamental" onclick="showTab('fundamental')" style="display: inline-block; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; color: #666; font-weight: bold;">Fundamental RL</span>
+          <div class="pub-tabs">
+            <span id="btn-fm" onclick="showTab('fm')" class="pub-tab active">RL for Foundation Models</span>
+            <span id="btn-science" onclick="showTab('science')" class="pub-tab">Applications on Science</span>
+            <span id="btn-fundamental" onclick="showTab('fundamental')" class="pub-tab">Fundamental RL</span>
           </div>
 
           <!-- Tab 1: RL for Foundation Models -->
@@ -865,7 +867,11 @@
         <tr>
           <td class="all">
             <br>
-            <a href="files/6_484_Lecture_notes.pdf" target="_blank">Lecture Notes: 6.8200 Computational Sensorimotor Learning</a>, MIT
+            <div class="list-stack">
+              <div class="list-card">
+                <span><a href="files/6_484_Lecture_notes.pdf" target="_blank">Lecture Notes: 6.8200 Computational Sensorimotor Learning</a>, MIT</span>
+              </div>
+            </div>
           </td>
         </tr>
         </tbody></table>
@@ -881,13 +887,20 @@
           <tr>
             <td class="all">
               <br>
-              <a href="https://www.zew.de" target="_blank">ZEW Workshop on Red Teaming Generative AI Models</a>
-              <br>
-              <a href="https://www.microsoft.com/en-us/research/project/project-turing/" target="_blank">Microsoft Turing Team</a>
-              <br>
-              <a href="https://www.macro-eyes.com/" target="_blank">Macro Eyes</a>
-              <br>
-              <a href="https://www.pair.toronto.edu/robotics-rg/" target="_blank">Toronto AI in Robotics Seminar</a>, University of Toronto
+              <div class="list-stack">
+                <div class="list-card">
+                  <span><a href="https://www.zew.de" target="_blank">ZEW Workshop on Red Teaming Generative AI Models</a></span>
+                </div>
+                <div class="list-card">
+                  <span><a href="https://www.microsoft.com/en-us/research/project/project-turing/" target="_blank">Microsoft Turing Team</a></span>
+                </div>
+                <div class="list-card">
+                  <span><a href="https://www.macro-eyes.com/" target="_blank">Macro Eyes</a></span>
+                </div>
+                <div class="list-card">
+                  <span><a href="https://www.pair.toronto.edu/robotics-rg/" target="_blank">Toronto AI in Robotics Seminar</a>, University of Toronto</span>
+                </div>
+              </div>
             </td>
           </tr>
           </tbody></table>
@@ -903,22 +916,20 @@
             <tr>
               <td class="all">
                 <br>
-                <a href="https://pulkitag.github.io/6.484/" target="_blank">6.484 Computational Sensorimotor Learning</a>, MIT
-                <span style="float: right;">Spring 2022</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="all">
-                <br>
-                <a href="https://pulkitag.github.io/rlbootcamp-iap/" target="_blank">6.S090 Deep Learning for Control</a>, MIT
-                <span style="float: right;">Spring 2021</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="all">
-                <br>
-                <a href="https://www.nvidia.com/zh-tw/deep-learning-ai/education/" target="_blank">Deep Learning Institute</a>, NVIDIA Taiwan
-                <span style="float: right;">Spring 2018</span>
+                <div class="list-stack">
+                  <div class="list-card">
+                    <span><a href="https://pulkitag.github.io/6.484/" target="_blank">6.484 Computational Sensorimotor Learning</a>, MIT</span>
+                    <span class="list-date">Spring 2022</span>
+                  </div>
+                  <div class="list-card">
+                    <span><a href="https://pulkitag.github.io/rlbootcamp-iap/" target="_blank">6.S090 Deep Learning for Control</a>, MIT</span>
+                    <span class="list-date">Spring 2021</span>
+                  </div>
+                  <div class="list-card">
+                    <span><a href="https://www.nvidia.com/zh-tw/deep-learning-ai/education/" target="_blank">Deep Learning Institute</a>, NVIDIA Taiwan</span>
+                    <span class="list-date">Spring 2018</span>
+                  </div>
+                </div>
               </td>
             </tr>
         </tbody></table>
